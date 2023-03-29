@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from '@apollo/client';
-import UserLogin from './userLogin/UserLogin'
+import Login from './Login/Login'
 import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_USER } from '../../utils/queries'
 import { useMainContext } from '../../utils/GlobalState'
@@ -45,7 +45,7 @@ const Home = () => {
                 <>
             <h1>Nope, You Are Not Logged In</h1>
             {/* If toggledy is true, login, if false, sign up */}
-            {(toggledy)? <UserLogin/> : <SignUp/>}
+            {(toggledy)? <Login/> : <SignUp/>}
             </>
             ) 
 
