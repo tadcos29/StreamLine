@@ -8,15 +8,16 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Home from './pages/Home';
-import Detail from './pages/Detail';
-import NoMatch from './pages/NoMatch';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
+import Home from './components/home/Home';
+// import Detail from './pages/Detail';
+ import NoMatch from './components/home/NoMatch';
+import Login from './components/home/userLogin/UserLogin';
+import Signup from './components/home/signUp/SignUp';
+// import Nav from './components/Nav';
+import { MainProvider } from './utils/GlobalState';
+import UserHome from './components/user/UserHome';
+// import Success from './pages/Success';
+// import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,8 +43,8 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <StoreProvider>
-            <Nav />
+          <MainProvider>
+            {/* <Nav /> */}
             <Routes>
               <Route 
                 path="/" 
@@ -57,7 +58,11 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               />
-              <Route 
+               <Route 
+                path="/UserHome" 
+                element={<UserHome />} 
+              />
+              {/* <Route 
                 path="/success" 
                 element={<Success />} 
               />
@@ -68,13 +73,13 @@ function App() {
               <Route 
                 path="/products/:id" 
                 element={<Detail />} 
-              />
+              /> */}
               <Route 
                 path="*" 
                 element={<NoMatch />} 
               />
             </Routes>
-          </StoreProvider>
+          </MainProvider>
         </div>
       </Router>
     </ApolloProvider>

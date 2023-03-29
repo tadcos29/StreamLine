@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 import {
-  UPDATE_PRODUCTS,
   ADD_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
@@ -9,17 +8,23 @@ import {
   UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
   TOGGLE_CART,
+  TOGGLE_LOG
 } from './actions';
 
 // The reducer is a function that accepts the current state and an action. It returns a new state based on that action.
 export const reducer = (state, action) => {
   switch (action.type) {
     // Returns a copy of state with an update products array. We use the action.products property and spread it's contents into the new array.
-    case UPDATE_PRODUCTS:
+  
+    case TOGGLE_LOG:
+      if (!state.toggledy) {state.toggledy=false}
+      console.log('intoggle');
+      let newToggle=(!state.toggledy);
+      console.log('intoggle'+state.toggledy);
       return {
         ...state,
-        products: [...action.products],
-      };
+        toggledy: newToggle
+          };
 
     case ADD_TO_CART:
       return {
@@ -93,6 +98,6 @@ export const reducer = (state, action) => {
   }
 };
 
-export function useProductReducer(initialState) {
+export function useMainReducer(initialState) {
   return useReducer(reducer, initialState);
 }

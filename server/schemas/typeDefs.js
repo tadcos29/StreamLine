@@ -22,12 +22,21 @@ const typeDefs = gql`
     products: [Product]
   }
 
+  type Ticket {
+    _id: ID
+    purchaseDate: String
+    name: String!
+    creator: ID
+    description: String
+  }
+
+
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
+    tickets: [Ticket!]
   }
 
   type Checkout {
