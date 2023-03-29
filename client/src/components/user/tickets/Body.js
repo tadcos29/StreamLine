@@ -21,7 +21,8 @@ const TBody = () => {
 
     return (
         <div className="container">
-            <h2>This is the Tickets Body component, not to be confused with the User Body component</h2>
+            <h2>
+                This is the Tickets Body component, not to be confused with the User Body component</h2>
             {user.tickets ? (
                     <>
                       <h1>There might be tickets</h1>
