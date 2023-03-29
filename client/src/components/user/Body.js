@@ -14,7 +14,7 @@ const YoutubePlayer = () => {
 
   const initPlayer = () => {
     player = new window.YT.Player('player', {
-      videoId: 'jfKfPfyJRdk',
+      videoId: 'vB5TWxYmK4E',
       playerVars: {
         'autoplay': 1,
         'controls': 1,
