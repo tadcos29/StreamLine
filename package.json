@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "antd": "^5.3.3",
+    "react-icons": "^4.8.0",
+    "react-pro-sidebar": "^1.0.0",
     "rsuite": "^5.29.0"
   }
 }
