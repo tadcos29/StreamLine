@@ -20,6 +20,8 @@ const UserNav = ({user}) => {
                  <Link to='/Tickets'><p>Tickets</p></Link>
                  and also to go to 
                  <Link to='/Profile'><p>Profile</p></Link>
+                 and also to go to 
+                 <Link to='/Livestream'><p>Livestream</p></Link>
             </h1>
         
         </div>

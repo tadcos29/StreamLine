@@ -19,6 +19,7 @@ import UserHome from './components/user/UserHome';
 import HostHome from './components/host/HostHome';
 import Tickets from './components/user/tickets/Tickets';
 import Profile from './components/user/profile/Profile';
+import Livestream from './components/livestream/Livestream';
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
@@ -76,6 +77,10 @@ function App() {
               <Route 
                 path="/Profile" 
                 element={<Profile />} 
+              />
+               <Route 
+                path="/Livestream" 
+                element={<Livestream />} 
               />
               {/* <Route 
                 path="/success" 

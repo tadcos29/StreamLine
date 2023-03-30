@@ -1,6 +1,7 @@
+import React from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
-// import { updateUser } from '../graphql/mutations';
+import { updateUser } from '../../../../utils/mutations';
 // import { getUser } from '../graphql/queries';
 
 const UpdateUserForm = ({ user, onUpdate }) => {
