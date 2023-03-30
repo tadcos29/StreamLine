@@ -4,18 +4,22 @@ import { UPDATE_USER } from '../../../../utils/mutations';
 import UpdateUserForm from './UpdateUserForm';
 const Body = ({ user }) => {
 
-    const [updateUser] = useMutation(UPDATE_USER);
+    const [updateUser, {error, data}] = useMutation(UPDATE_USER);
 
-  const handleUpdateUser = (formData) => {
+    const handleUpdateUser = async (formData) => {
     console.log('inhandleupdate');
     console.log(formData);
-    updateUser({
+    const response =await updateUser({
       variables: {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-      },
+        password:formData.password
+      }
     });
+        console.error(error);
+    
+
   };
     return (
       <div>
