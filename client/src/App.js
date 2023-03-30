@@ -16,7 +16,9 @@ import Signup from './components/home/signUp/SignUp';
 // import Nav from './components/Nav';
 import { MainProvider } from './utils/GlobalState';
 import UserHome from './components/user/UserHome';
-import HostHome from './components/host/HostHome'
+import HostHome from './components/host/HostHome';
+import Tickets from './components/user/tickets/Tickets';
+import Profile from './components/user/profile/Profile';
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
@@ -66,6 +68,14 @@ function App() {
                 <Route 
                 path="/HostHome" 
                 element={<HostHome />} 
+              />
+                  <Route 
+                path="/Tickets" 
+                element={<Tickets />} 
+              />
+              <Route 
+                path="/Profile" 
+                element={<Profile />} 
               />
               {/* <Route 
                 path="/success" 

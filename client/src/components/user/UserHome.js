@@ -6,6 +6,7 @@ import { QUERY_USER } from '../../utils/queries'
 // This body is the tickets body
 import Body from './Body'
 import UserNav from './UserNav'
+import Header from "./Header";
 
 
 const UserHome = () => {
@@ -21,8 +22,8 @@ const UserHome = () => {
     return (
         <div className="container">
             <h1>Welcome to User Home, {user.firstName}. This is the User Home parent component</h1>
-            <UserNav user={user} />
-            <Body user={user} />
+            <Header user={user} />
+            <Body user={user} /> 
         </div>
           
          

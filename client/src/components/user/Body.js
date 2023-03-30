@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 
 
-// This body is the Tickets body
-import TicketBody from './tickets/TicketBody';
 import TicketForm from './tickets/TicketForm'
+import Tickets from './tickets/Tickets'
 
 const YoutubePlayer = () => {
   let player;
@@ -53,7 +52,7 @@ const Body = ({ user }) => {
           <h1>These four coloured squares comprise the User Body Component, not to be confused with the tickets one.</h1>
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#ADD8E6' }}>
-          <TicketBody user={user} />
+          nothing here
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', height: '50vh' }}>
@@ -62,7 +61,7 @@ const Body = ({ user }) => {
           <YoutubePlayer />
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#FFFACD' }}>
-          <TicketForm/>
+        <TicketForm/>
         </div>
       </div>
     </div>
