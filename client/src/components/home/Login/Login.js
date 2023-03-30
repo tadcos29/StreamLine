@@ -9,7 +9,7 @@ import { TOGGLE_LOG } from '../../../utils/actions';
 
 
 
-function UserLogin(props) {
+function Login(props) {
   const [state, dispatch] = useMainContext();
   const { toggledy } = state;
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -80,4 +80,4 @@ function UserLogin(props) {
   );
 }
 
-export default UserLogin;
+export default Login;

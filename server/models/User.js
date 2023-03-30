@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-// const Ticket = require('./Ticket');
+const Ticket = require('./Ticket');
 
 const userSchema = new Schema({
   firstName: {
@@ -25,7 +25,13 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  // tickets: [ticketSchema]
+  isHost: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  tickets: [Ticket.schema],
+  created: [Ticket.schema]
 });
 
 // set up pre-save middleware to create password
