@@ -11,12 +11,12 @@ import UserHome from '../user/UserHome'
 const Home = () => {
     const [state, dispatch] = useMainContext();
     const { toggledy } = state;
-    console.log(toggledy);
+    console.log(`toggledy ${toggledy}`);
     // The state variable toggledy has the sole function of switching between the 'login' and
     // 'signup' components in the home page. It's overkill to make this a state variable, but I wanted
     // a simple one to test the cohesion of moving parts. -T
    const {loading, meErr, data} = useQuery(QUERY_USER);
-    console.log(data);
+    console.log(`home query ${data}`);
     let user;
     if (data) {
         user = data.user;
@@ -31,10 +31,11 @@ const Home = () => {
                 // without having to actually inject an extra div into the final html
                 <>
                   {user ? (
-                    <>
-                      <h1>Welcome back, {user.firstName}</h1>
-                      <Link to='/UserHome'><p>Go Home</p></Link>
-                    </>
+                    
+                      user.isHost ? (<><h1>Welcome back, HOST {user.firstName}</h1>
+                      <Link to='/HostHome'><p>Go To HostHome</p></Link></>) : (<><h1>Welcome back, {user.firstName}</h1>
+                      <Link to='/UserHome'><p>Go Home</p></Link></>)
+                      
                   ) : (
                     <h1>Loading...</h1>
                   )}

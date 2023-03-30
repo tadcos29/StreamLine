@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
-import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
-import { useQuery, useState } from '@apollo/client';
-import Login from '../../components/home/Login/Login';
-// import SignUp from '../../components/home/signUp/SignUp';
-import { QUERY_USER } from '../../utils/queries';
-import { useMainContext } from '../../utils/GlobalState';
+
+
 // This body is the Tickets body
-import TBody from './tickets/Body';
+import TicketBody from './tickets/TicketBody';
+import TicketForm from './tickets/TicketForm'
 
 const YoutubePlayer = () => {
   let player;
@@ -57,7 +53,7 @@ const Body = ({ user }) => {
           <h1>These four coloured squares comprise the User Body Component, not to be confused with the tickets one.</h1>
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#ADD8E6' }}>
-          <TBody user={user} />
+          <TicketBody user={user} />
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', height: '50vh' }}>
@@ -66,6 +62,7 @@ const Body = ({ user }) => {
           <YoutubePlayer />
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#FFFACD' }}>
+          <TicketForm/>
         </div>
       </div>
     </div>

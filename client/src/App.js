@@ -16,6 +16,7 @@ import Signup from './components/home/signUp/SignUp';
 // import Nav from './components/Nav';
 import { MainProvider } from './utils/GlobalState';
 import UserHome from './components/user/UserHome';
+import HostHome from './components/host/HostHome'
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
@@ -61,6 +62,10 @@ function App() {
                <Route 
                 path="/UserHome" 
                 element={<UserHome />} 
+              />
+                <Route 
+                path="/HostHome" 
+                element={<HostHome />} 
               />
               {/* <Route 
                 path="/success" 

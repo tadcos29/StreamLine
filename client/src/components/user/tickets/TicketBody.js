@@ -2,28 +2,22 @@ import React from "react";
 import Auth from "../../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from '@apollo/client';
-import Login from '../../../components/home/Login/Login'
+import Login from '../../home/Login/Login'
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_USER } from '../../../utils/queries'
 import { useMainContext } from '../../../utils/GlobalState'
 
-import Tickets from '../tickets/Tickets'
+import Tickets from './Tickets'
 
 
-const TBody = () => {
-    const {loading, meErr, data} = useQuery(QUERY_USER);
-    let user;
-    if (data) {
-        user = data.user;
-        console.log('got data in userhome');
-      }
+const TicketBody = ({user}) => {
 
 
     return (
         <div className="container">
             <h2>
                 This is the Tickets Body component, not to be confused with the User Body component</h2>
-            {user.tickets ? (
+            {user.tickets.length ? (
                     <>
                       <h1>There might be tickets</h1>
                       <Tickets/>
@@ -39,5 +33,5 @@ const TBody = () => {
       );
   };
   
-  export default TBody;
+  export default TicketBody;
   
