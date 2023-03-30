@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../../../utils/mutations';
-import Auth from '../../../utils/auth';
-import { useMainContext } from '../../../utils/GlobalState'
-import { TOGGLE_LOG } from '../../../utils/actions';
-
-
-
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { LOGIN } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
+import { useMainContext } from "../../../utils/GlobalState";
+import { TOGGLE_LOG } from "../../../utils/actions";
 
 function Login(props) {
   const [state, dispatch] = useMainContext();
   const { toggledy } = state;
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
@@ -29,9 +26,9 @@ function Login(props) {
   };
   const toggleInUp = () => {
     dispatch({
-        type: TOGGLE_LOG,
-      });
-  }
+      type: TOGGLE_LOG,
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
