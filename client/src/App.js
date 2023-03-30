@@ -1,38 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-import Home from './components/home/Home';
+import Home from "./components/home/Home";
 // import Detail from './pages/Detail';
- import NoMatch from './components/home/NoMatch';
-import Login from './components/home/Login/Login';
-import Signup from './components/home/signUp/SignUp';
+import NoMatch from "./components/home/NoMatch";
+import Login from "./components/home/login/Login";
+import Signup from "./components/home/signUp/SignUp";
 // import Nav from './components/Nav';
-import { MainProvider } from './utils/GlobalState';
-import UserHome from './components/user/UserHome';
-import HostHome from './components/host/HostHome';
-import Tickets from './components/user/tickets/Tickets';
-import Profile from './components/user/profile/Profile';
-import Livestream from './components/livestream/Livestream';
+import { MainProvider } from "./utils/GlobalState";
+import UserHome from "./components/user/UserHome";
+import HostHome from "./components/host/HostHome";
+import Tickets from "./components/user/tickets/Tickets";
+import Profile from "./components/user/profile/Profile";
+import Livestream from "./components/livestream/Livestream";
+import Events from "./components/user/profile/events/Events.js";
+import PastEvents from "./components/user/profile/events/PastEvents.js";
+import UpcomingEvents from "./components/user/profile/events/UpcomingEvents.js";
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -50,38 +53,17 @@ function App() {
           <MainProvider>
             {/* <Nav /> */}
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
-              />
-               <Route 
-                path="/UserHome" 
-                element={<UserHome />} 
-              />
-                <Route 
-                path="/HostHome" 
-                element={<HostHome />} 
-              />
-                  <Route 
-                path="/Tickets" 
-                element={<Tickets />} 
-              />
-              <Route 
-                path="/Profile" 
-                element={<Profile />} 
-              />
-               <Route 
-                path="/Livestream" 
-                element={<Livestream />} 
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/UserHome" element={<UserHome />} />
+              <Route path="/HostHome" element={<HostHome />} />
+              <Route path="/Tickets" element={<Tickets />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/Livestream" element={<Livestream />} />
+              <Route path="/Events" element={<Events />} />
+              <Route path="/PastEvents" element={<PastEvents />} />
+              <Route path="/UpcomingEvents" element={<UpcomingEvents />} />
               {/* <Route 
                 path="/success" 
                 element={<Success />} 
@@ -94,10 +76,7 @@ function App() {
                 path="/products/:id" 
                 element={<Detail />} 
               /> */}
-              <Route 
-                path="*" 
-                element={<NoMatch />} 
-              />
+              <Route path="*" element={<NoMatch />} />
             </Routes>
           </MainProvider>
         </div>
