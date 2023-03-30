@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from "@apollo/client";
-import Login from "./login/Login";
+import Login from "./Login/Login";
 import SignUp from "../../components/home/signUp/SignUp";
 import { QUERY_USER } from "../../utils/queries";
 import { useMainContext } from "../../utils/GlobalState";
@@ -33,9 +33,6 @@ const Home = () => {
             user.isHost ? (
               <>
                 <h1>Welcome back, HOST {user.firstName}</h1>
-                <Link to="/HostHome">
-                  <p>Go To HostHome</p>
-                </Link>
               </>
             ) : (
               <>
