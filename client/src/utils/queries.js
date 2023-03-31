@@ -20,6 +20,7 @@ export const QUERY_EVENTS = gql`
       url
       creator {
         firstName
+        _id
       }
     }
   }
@@ -47,6 +48,7 @@ export const QUERY_TICKETS = gql`
 export const QUERY_USER = gql`
   query user {
     user {
+      _id
       firstName
       lastName
       email

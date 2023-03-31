@@ -37,7 +37,6 @@ const EventBody = () => {
     console.log("got an event list");
     console.log(eventList);
     myEventList=eventList.filter(event => event.creator._id === user._id);
-
   }
   return (
     <div className="container">
@@ -50,7 +49,7 @@ const EventBody = () => {
       <div style={{ overflowY: "scroll", height: "250px" }}>
         <ul>
           {myEventList.map((myEvent) => (
-            <EventCard key={myEvent._id} event={myEvent} />
+            <EventCard key={myEvent._id} eventData={myEvent} />
           ))}
         </ul>
        
