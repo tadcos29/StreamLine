@@ -2,17 +2,21 @@ import React from "react";
 import Auth from "../../../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from "@apollo/client";
-import Login from "../../../home/Login/Login";
+import Login from "../../../home/melissa/Login";
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_EVENTS, QUERY_USER } from "../../../../utils/queries";
 import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
 import Body from "./EventBody";
-import EventCard from './partials/EventCard';
+import EventCard from "./partials/EventCard";
 
 const EventBody = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
-  const { loading: evLoading, error: evError, data: evData } = useQuery(QUERY_EVENTS);
+  const {
+    loading: evLoading,
+    error: evError,
+    data: evData,
+  } = useQuery(QUERY_EVENTS);
   let user;
   let eventList;
   if (loading || evLoading) {
@@ -37,12 +41,12 @@ const EventBody = () => {
         <p />
       </h2>
       <div style={{ overflowY: "scroll", height: "250px" }}>
-      <ul>
-            {eventList.map((event) => (
-              <EventCard key={event._id} event={event} />
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {eventList.map((event) => (
+            <EventCard key={event._id} event={event} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
