@@ -9,6 +9,8 @@ import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
 import Body from "./EventBody";
 import EventCard from "./partials/EventCard";
+import CreateEventForm from "../../../host/events/createEvent/CreateForm";
+
 
 const EventBody = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
@@ -19,6 +21,7 @@ const EventBody = () => {
   } = useQuery(QUERY_EVENTS);
   let user;
   let eventList;
+  let myEventList;
   if (loading || evLoading) {
     return <h1>Loading Events...</h1>;
   }
@@ -33,19 +36,24 @@ const EventBody = () => {
     eventList = evData.events;
     console.log("got an event list");
     console.log(eventList);
+    myEventList=eventList.filter(event => event.creator._id === user._id);
+
   }
   return (
     <div className="container">
       <h2>
         This is the Events Body
+        <CreateEventForm/>
         <p />
       </h2>
+      <h2>This list will filter the user's own events</h2>
       <div style={{ overflowY: "scroll", height: "250px" }}>
         <ul>
-          {eventList.map((event) => (
-            <EventCard key={event._id} event={event} />
+          {myEventList.map((myEvent) => (
+            <EventCard key={myEvent._id} event={myEvent} />
           ))}
         </ul>
+       
       </div>
     </div>
   );
