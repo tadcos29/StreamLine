@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "../../../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from "@apollo/client";
-import Login from "../../../home/melissa/melissa";
+import Login from "../../../home/Login/login";
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_EVENTS, QUERY_USER } from "../../../../utils/queries";
 import { useMainContext } from "../../../../utils/GlobalState";
