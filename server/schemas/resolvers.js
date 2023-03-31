@@ -22,7 +22,7 @@ const resolvers = {
 
 
     events: async () => {
-      return await Event.find();
+      return await Event.find().populate('creator');
     },
 
 // find one event

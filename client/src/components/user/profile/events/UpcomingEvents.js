@@ -7,7 +7,7 @@ import Login from "../../../home/Login/Login";
 import { QUERY_USER } from "../../../../utils/queries";
 import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
-import Body from "./Body";
+import Body from "./EventBody";
 
 const UpcomingEvents = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
@@ -29,8 +29,8 @@ const UpcomingEvents = () => {
         <p />
         You are {user.firstName}. It hosts the Event-Body component:
       </h2>
-      <Header user={user} />
-      <Body user={user} />
+      {/* <Header user={user} />
+      <Body user={user} /> */}
     </div>
   );
 };

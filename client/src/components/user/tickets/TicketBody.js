@@ -34,7 +34,7 @@ const TicketBody = ({ user }) => {
   return (
     <div className="container">
       <h2>This is the Tickets Body component, hosted by Tickets.js</h2>
-      {user.tickets.length ? (
+      {user.tickets ? (
         <>
           <h1>There might be tickets</h1>
           {/* <Ticket/> */}

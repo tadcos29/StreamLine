@@ -16,6 +16,11 @@ export const QUERY_EVENTS = gql`
     events {
       _id
       name
+      description
+      url
+      creator {
+        firstName
+      }
     }
   }
 `;
@@ -34,6 +39,7 @@ export const QUERY_TICKETS = gql`
     tickets {
       _id
       name
+      
     }
   }
 `;
@@ -44,7 +50,14 @@ export const QUERY_USER = gql`
       firstName
       lastName
       email
-  
+      # tickets {
+      #   name
+      #   purchaseDate
+      #   expired
+      #   event {
+      #     name
+      #   }
+      # }
     }
   }
 `;

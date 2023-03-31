@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../../../utils/mutations';
+import { QUERY_EVENTS } from '../../../../utils/queries';
+
 import Auth from '../../../../utils/auth';
 
 const CreateEventForm = () => {
-  const [addEvent,{error, data}] = useMutation(ADD_EVENT);
+    const [addEvent, { error, data }] = useMutation(ADD_EVENT, {
+        refetchQueries: [{ query: QUERY_EVENTS }]
+      });
   const [formData, setFormData] = useState({
     name: '',
     description: '',
