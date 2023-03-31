@@ -17,9 +17,19 @@ const ticketSchema = new Schema({
     required: false,
     trim: true
   },
-  creator: {
-    type: String,
-    required: true,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
+  },
+  event: {
+    type: Schema.Types.ObjectId,
+    ref: 'Event',
+    required: false,
+  },
+  expired: {
+    type: Boolean,
+    default: false
   }
 });
 

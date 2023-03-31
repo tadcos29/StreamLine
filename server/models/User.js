@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Ticket = require('./Ticket');
+const Event = require('./Event');
 
 const userSchema = new Schema({
   firstName: {
@@ -31,7 +32,7 @@ const userSchema = new Schema({
     default: false
   },
   tickets: [Ticket.schema],
-  created: [Ticket.schema]
+  created: [Event.schema]
 });
 
 // set up pre-save middleware to create password

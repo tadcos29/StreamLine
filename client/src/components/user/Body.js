@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 
 
-import TicketForm from './tickets/TicketForm'
-import Tickets from './tickets/Tickets'
+// import TicketForm from './tickets/TicketForm'
+// import Tickets from './tickets/Tickets'
+
+import CreateEventForm from "../host/events/createEvent/CreateForm";
 
 
 
@@ -23,7 +25,7 @@ const Body = ({ user }) => {
       
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#FFFACD' }}>
-        <TicketForm/>
+        <CreateEventForm/>
         </div>
       </div>
     </div>

@@ -22,6 +22,42 @@ export const ADD_TICKET = gql`
   }
 `;
 
+export const ADD_EVENT = gql`
+ mutation addEvent(
+  $name: String!
+  $description: String
+  $accessKey: String
+  $url: String
+  $admissionPrice: Float
+) {
+  addEvent(
+    name: $name
+    description: $description
+    accessKey: $accessKey
+    url: $url
+    admissionPrice: $admissionPrice
+  ) {
+    _id
+    name
+    description
+    creator {
+      _id
+      firstName
+      lastName
+      email
+    }
+    accessKey
+    url
+    isLive
+    isPast
+    admissionPrice
+  }
+}
+`;
+
+
+
+
 export const ADD_USER = gql`
   mutation addUser(
     $firstName: String!
@@ -51,3 +87,4 @@ mutation updateUser($firstName: String, $lastName: String, $email: String, $pass
     email
   }
 }`;
+
