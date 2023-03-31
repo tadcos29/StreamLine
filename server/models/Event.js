@@ -18,14 +18,15 @@ const eventSchema = new Schema({
     trim: true
   },
   creator: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
   },
   accessKey: {
     type: String,
   },
   url: {
-    type: String,
+    type: Date,
   },
   isLive: {
     type: Boolean,

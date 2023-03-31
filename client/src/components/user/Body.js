@@ -17,7 +17,7 @@ const Body = ({ user }) => {
           <h1>These four coloured squares comprise the User Body Component, not to be confused with the tickets one.</h1>
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#ADD8E6' }}>
-          <EventBody/>
+        event body used to be here
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', height: '50vh' }}>
@@ -26,7 +26,7 @@ const Body = ({ user }) => {
 
         </div>
         <div style={{ width: '50%', height: '100%', backgroundColor: '#FFFACD' }}>
-        <CreateEventForm/>
+        
         </div>
       </div>
     </div>

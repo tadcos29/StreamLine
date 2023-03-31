@@ -41,7 +41,7 @@ const CustomUserNav = ({ user, onSelect, activeKey, ...props }) => {
               <p>Livestream</p>
             </Link>
           </Nav.Item>
-          <Nav.Menu title="Events" icon={<FaCalendarAlt />} className="nav-item">
+          {/* <Nav.Menu title="Events" icon={<FaCalendarAlt />} className="nav-item">
             <Nav.Item>
               <Link to="/UpcomingEvents" className="subnav-item">
                 <p>Upcoming Events</p>
@@ -52,7 +52,12 @@ const CustomUserNav = ({ user, onSelect, activeKey, ...props }) => {
                 <p>Past Events</p>
               </Link>
             </Nav.Item>
-          </Nav.Menu>
+          </Nav.Menu> */}
+          <Nav.Item icon={<ImVideoCamera />}>
+           <Link to="/Events" className="nav-item">
+              <p>Events</p>
+            </Link>
+            </Nav.Item>
           <Nav.Item icon={<BsPower />}>
             <Link to="/" onClick={() => Auth.logout()} className="nav-item">
               <p>Logout</p>
