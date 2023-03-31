@@ -8,9 +8,13 @@ import {
   // UPDATE_CURRENT_CATEGORY,
   // CLEAR_CART,
   // TOGGLE_CART,
-  TOGGLE_LOG
+  TOGGLE_LOG,
+  SET_UE_EVENT
 } from './actions';
 
+const initialState = {
+  UESelectedEvent: {}
+};
 // The reducer is a function that accepts the current state and an action. It returns a new state based on that action.
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -25,7 +29,16 @@ export const reducer = (state, action) => {
         ...state,
         toggledy: newToggle
           };
-
+    
+    case SET_UE_EVENT: 
+    if (!state.UESelectedEvent) {state.UESelectedEvent=false}
+      console.log('insetue');
+      console.log(action.payload);
+      return {
+        ...state,
+        UESelectedEvent: action.payload
+          };
+        
     // case ADD_TO_CART:
     //   return {
     //     ...state,
