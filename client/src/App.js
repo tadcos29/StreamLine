@@ -23,8 +23,6 @@ import Livestream from "./components/livestream/Livestream";
 import Events from "./components/user/profile/events/Events.js";
 import PastEvents from "./components/user/profile/events/PastEvents.js";
 import UpcomingEvents from "./components/user/profile/events/UpcomingEvents.js";
-// import Success from './pages/Success';
-// import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
   uri: "/graphql",

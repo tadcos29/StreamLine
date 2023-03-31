@@ -36,13 +36,28 @@ const userSchema = new Schema({
 
 // set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {
+ 
   if (this.isNew || this.isModified('password')) {
+    console.log('inpresavepasswordhook');
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
+  
 
   next();
 });
+
+// userSchema.pre('findOneAndUpdate', async function(next) {
+//   const docToUpdate = await this.model.findOne(this.getQuery());
+//   if (docToUpdate.isModified('password')) {
+//     console.log('inspecialpasshook');
+//     const saltRounds = 10;
+//     this.password = await bcrypt.hash(this.password, saltRounds);
+//   }
+  
+
+//   next();
+// });
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function(password) {
