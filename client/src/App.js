@@ -11,7 +11,7 @@ import { setContext } from "@apollo/client/link/context";
 import Home from "./components/home/Home";
 // import Detail from './pages/Detail';
 import NoMatch from "./components/home/NoMatch";
-import Login from "./components/home/melissa/melissa";
+import Login from "./components/home/Login/login";
 import Signup from "./components/home/signUp/SignUp";
 // import Nav from './components/Nav';
 import { MainProvider } from "./utils/GlobalState";
