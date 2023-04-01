@@ -19,10 +19,14 @@ export const ADD_TICKET = gql`
       description
       owner {
       _id
+      firstName
+      lastName
+      email
      
     }
       event {
         _id
+        
       
       }
     }

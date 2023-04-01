@@ -7,11 +7,11 @@ const resolvers = {
   Query: {
 
     tickets: async () => {
-      return await Ticket.find();
+      return await Ticket.find().populate('owner event');
     },
     ticket: async (parent, { _id }, context) => {
       if (context.user) {
-        const foundTicket = await Ticket.findById(_id);
+        const foundTicket = await Ticket.findById(_id).populate('owner event');
         return foundTicket;
       }
 
@@ -42,15 +42,14 @@ const resolvers = {
       if (context.user) {
         console.log('inhasuser');
         const user = await User.findById(context.user._id)
-        // .populate({
-        //   path: 'tickets',
-        //   select: 'purchaseDate expired',
-        //   populate: {
-        //     path: 'event',
-        //     model: 'Event'
-        //   }
-        // }) // ticket populate
-        // .populate('created');
+        .populate({
+          path: 'tickets',
+          select: 'purchaseDate expired',
+          populate: {
+            path: 'event',
+          }
+        }) // ticket populate
+        .populate('created');
         // user.tickets.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
