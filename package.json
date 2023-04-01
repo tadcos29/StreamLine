@@ -22,6 +22,7 @@
     "react-burger-menu": "^3.0.9",
     "react-currency-field": "^1.2.0",
     "react-icons": "^4.8.0",
-    "rsuite": "^5.29.0"
+    "rsuite": "^5.29.0",
+    "socket.io-client": "^4.6.1"
   }
 }
