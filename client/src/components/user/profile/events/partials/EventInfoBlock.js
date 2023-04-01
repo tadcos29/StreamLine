@@ -23,12 +23,13 @@ const EventInfoBlock = () => {
   };
 
   if (!UESelectedEvent) {
+    console.log('no state');
     return null;
   }
   
   const eventData = UESelectedEvent;
   console.log(eventData);
-
+  console.log('clickedsquare');
   return (
     <div>
       <h2>Selected Event:</h2>
