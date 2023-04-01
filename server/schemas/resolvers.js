@@ -44,7 +44,7 @@ const resolvers = {
         const user = await User.findById(context.user._id)
         .populate({
           path: 'tickets',
-          select: 'purchaseDate expired',
+          select: 'purchaseDate expired event',
           populate: {
             path: 'event',
           }
