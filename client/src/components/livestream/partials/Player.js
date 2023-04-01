@@ -14,7 +14,7 @@ const Player = ({ user }) => {
   });
 
   const sendMessage = () => {
-    const messageData = { message, room };
+    const messageData = { message, room, sender: user.firstName };
     socket.emit("send_message", messageData);
     console.log("message sent");
 
@@ -28,7 +28,7 @@ const Player = ({ user }) => {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+      setSentMessages((prevMessages) => [...prevMessages, data]);
     });
   }, [socket]);
   const list = document.querySelector('ul');
@@ -67,7 +67,7 @@ const Player = ({ user }) => {
         <ul>
           {sentMessages.map((messageData, index) => (
             <li key={index} className={twitchid}>
-              {user.firstName}  -  {messageData.message}
+              {messageData.sender} - {messageData.message}
             </li>
           ))}
         </ul>
