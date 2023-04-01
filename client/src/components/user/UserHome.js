@@ -26,15 +26,15 @@ const UserHome = () => {
       className="background"
       style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
     >
-      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+      <div className="home-contain h-screen mx-auto ml-3 bg-main-bg md:flex flex-row text-main-text font-main">
         <div>
           <Header user={user} />
         </div>
-        <div className="w-full">
+        <div className="w-full mx-3">
           <div>
             <TopNav user={user} />
           </div>
-          <div className="body-container ">
+          <div className="body-container">
             <Body user={user} />
           </div>
         </div>

@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import HomeIcon from "@rsuite/icons/legacy/Home";
 import { slide as Menu } from "react-burger-menu";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//icons
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
 import "./user.css";
 
 var styles = {
@@ -74,15 +79,28 @@ function UserNav({ view, setView }) {
     <>
       <nav className="navlist hidden md:flex flex-col justify-between text-slate-50">
         <div
+          className="navlink"
+          onClick={() => {
+            handleMobileNav("userhome");
+          }}
+        >
+          <Link to="/UserHome" className="nav-item">
+            <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faHouse} />
+            Home
+          </Link>
+        </div>
+        <div
           className="navlink  "
           onClick={() => {
             handleMobileNav("events");
           }}
         >
           <Link to="/Events" className="nav-item">
-            What`s On
+            <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faCalendarDays} />
+            What's On
           </Link>
         </div>
+
         <div
           className="navlink"
           onClick={() => {
@@ -90,9 +108,11 @@ function UserNav({ view, setView }) {
           }}
         >
           <Link to="/Tickets" className="nav-item">
+            <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faTicket} />
             Your Tickets
           </Link>
         </div>
+
         <div
           className="navlink  "
           onClick={() => {
@@ -100,6 +120,7 @@ function UserNav({ view, setView }) {
           }}
         >
           <Link to="/Profile" className="nav-item">
+            <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faAddressBook} />
             Profile
           </Link>
         </div>
@@ -125,6 +146,7 @@ function UserNav({ view, setView }) {
                 What`s On
               </Link>
             </div>
+
             <div
               className="mobile-link"
               onClick={() => {
