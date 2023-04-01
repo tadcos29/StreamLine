@@ -43,7 +43,7 @@ const Player = ({ user }) => {
     <div>
       <h2>Player</h2>
       <iframe
-        src={`https://player.twitch.tv/?channel=${twitchid}&parent=localhost`}
+        src={`https://player.twitch.tv/?channel=${twitchid}&parent=livestream-tickets.herokuapp.com`}
         frameBorder="0"
         allowFullScreen="true"
         scrolling="no"
