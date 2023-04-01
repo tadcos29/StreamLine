@@ -88,7 +88,13 @@ export const QUERY_USER = gql`
       email
       tickets{
         name
+        purchaseDate
+        event {
+          name
+          streamTime
+        }
       }
+      
       # tickets {
       #   name
       #   purchaseDate
