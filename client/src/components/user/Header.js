@@ -2,6 +2,8 @@ import React from "react";
 import Auth from "../../utils/auth";
 import UserNav from "./UserNav";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import "./user.css";
 
 const Header = (props) => {
@@ -18,7 +20,8 @@ const Header = (props) => {
           to="/"
           onClick={() => Auth.logout()}
         >
-          <p>Logout</p>
+          <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faRightFromBracket} />
+          Logout
         </Link>
       </div>
     </div>
