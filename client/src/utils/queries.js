@@ -92,6 +92,7 @@ export const QUERY_USER = gql`
         event {
           name
           streamTime
+          url
         }
       }
       

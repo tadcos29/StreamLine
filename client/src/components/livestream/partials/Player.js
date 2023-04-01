@@ -1,53 +1,77 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 
-
+const socket = io.connect("http://localhost:3001");
 
 const Player = ({ user }) => {
-  const YoutubePlayer = () => {
-    let player;
-  
-    const initPlayer = () => {
-      player = new window.YT.Player('player', {
-        videoId: 'vB5TWxYmK4E',
-        playerVars: {
-          'autoplay': 1,
-          'controls': 1,
-          'mute': 0
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    };
-  
-    const onPlayerReady = (event) => {
-      event.target.playVideo();
-    };
-  
-    useEffect(() => {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-  
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  
-      window.onYouTubeIframeAPIReady = initPlayer;
-  
-      return () => {
-        window.onYouTubeIframeAPIReady = null;
-      };
-    }, []);
-  
-    return (
-      <div id="player"></div>
-    );
+  const twitchid = localStorage.getItem("linkurl");
+  const [room, setRoom] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageReceived, setMessageReceived] = useState("");
+  const [sentMessages, setSentMessages] = useState(() => {
+    const storedMessages = localStorage.getItem(`${twitchid}-messages`);
+    return storedMessages ? JSON.parse(storedMessages) : [];
+  });
+
+  const sendMessage = () => {
+    const messageData = { message, room };
+    socket.emit("send_message", messageData);
+    console.log("message sent");
+
+    // Add the sent message to the state array
+    const newMessages = [...sentMessages, messageData];
+    setSentMessages(newMessages);
+
+    // Store the messages in local storage
+    localStorage.setItem(`${twitchid}-messages`, JSON.stringify(newMessages));
   };
 
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageReceived(data.message);
+    });
+  }, [socket]);
+  const list = document.querySelector('ul');
+
+  list.querySelectorAll('li').forEach(li => {
+    if (!li.classList.contains(twitchid)) {
+      li.style.display = "none";
+    }
+});
 
   return (
     <div>
-    <h2>Player</h2>
-    <YoutubePlayer/>
+      <h2>Player</h2>
+      <iframe
+        src={`https://player.twitch.tv/?channel=${twitchid}&parent=localhost`}
+        frameBorder="0"
+        allowFullScreen="true"
+        scrolling="no"
+        height="378"
+        width="620"
+      ></iframe>
+    
+      <div className="App">
+        <input
+          placeholder="Message..."
+          onChange={(event) => {
+            setMessage(event.target.value);
+          }}
+        />
+        <button onClick={() => { console.log("hello"); sendMessage(); }}>
+          Send Message
+        </button>
+        <h1> Message:</h1>
+        {messageReceived}
+        <h1>Sent Messages:</h1>
+        <ul>
+          {sentMessages.map((messageData, index) => (
+            <li key={index} className={twitchid}>
+              {user.firstName}  -  {messageData.message}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
