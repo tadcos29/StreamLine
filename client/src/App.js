@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -20,6 +21,7 @@ import HostHome from "./components/host/HostHome";
 import Tickets from "./components/user/tickets/Tickets";
 import Profile from "./components/user/profile/Profile";
 import Livestream from "./components/livestream/Livestream";
+import CreateEvent from "./components/host/events/createEvent/Create";
 import Events from "./components/user/profile/events/Events.js";
 import PastEvents from "./components/user/profile/events/PastEvents.js";
 import UpcomingEvents from "./components/user/profile/events/UpcomingEvents.js";
@@ -55,6 +57,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/UserHome" element={<UserHome />} />
+              <Route path="/CreateEvent" element={<CreateEvent />} />
               <Route path="/HostHome" element={<HostHome />} />
               <Route path="/Tickets" element={<Tickets />} />
               <Route path="/Profile" element={<Profile />} />

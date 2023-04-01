@@ -6,6 +6,8 @@ import Login from "../../home/Login/login";
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_USER } from "../../../utils/queries";
 import { useMainContext } from "../../../utils/GlobalState";
+import image from "../../../assets/images/background8.png";
+import TopNav from "../TopBar";
 import Header from "../Header";
 
 import TicketBody from "./TicketBody";
@@ -25,14 +27,23 @@ const Tickets = () => {
   }
 
   return (
-    <div className="container">
-      <Header user={user} />
-      <h2>
-        This is the Tickets Page which has been called by the Body(User)
-        <p />
-        You are {user.firstName}. It hosts the Ticket Body component:
-      </h2>
-      <TicketBody user={user} />
+    <div
+      className="background"
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
+    >
+      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+        <div>
+          <Header user={user} />
+        </div>
+        <div className="w-full">
+          <div>
+            <TopNav user={user} />
+          </div>
+          <div className="body-container ">
+            <TicketBody user={user} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,84 +1,167 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
-import { Link, NavLink } from "react-router-dom";
-import { Navbar, Nav} from "rsuite";
 import HomeIcon from "@rsuite/icons/legacy/Home";
-import { FaTicketAlt } from "react-icons/fa";
-import { FaCalendarAlt } from "react-icons/fa";
-import { BsFillPersonFill, BsPower } from "react-icons/bs";
-import { ImVideoCamera } from "react-icons/im";
+import { slide as Menu } from "react-burger-menu";
 
 import "./user.css";
-// import { useQuery, useState } from '@apollo/client';
-// import Login from '../../components/home/Login/Login'
-// import SignUp from '../../components/home/signUp/SignUp'
-// import { QUERY_USER } from '../../utils/queries'
-// import { useMainContext } from '../../utils/GlobalState'
-// const NavLink = props => <Nav.Item componentClass={Link} {...props} />;
 
-const CustomUserNav = ({ user, onSelect, activeKey, ...props }) => {
-    return (
-      <Navbar {...props} className="navbar">
-        <Nav>
-          <Nav.Item icon={<HomeIcon />} className="nav">
-            <Link to="/UserHome" className="nav-item">
-              <p>HOME</p>
-            </Link>
-          </Nav.Item>
-          <Nav.Item icon={<FaTicketAlt />}>
-            <Link to="/Tickets" className="nav-item">
-              <p>Tickets</p>
-            </Link>
-          </Nav.Item>
-          <Nav.Item icon={<BsFillPersonFill />}>
-            <Link to="/Profile" className="nav-item">
-              <p>Profile</p>
-            </Link>
-          </Nav.Item>
-          <Nav.Item icon={<ImVideoCamera />}>
-            <Link to="/Livestream" className="nav-item">
-              <p>Livestream</p>
-            </Link>
-          </Nav.Item>
-          {/* <Nav.Menu title="Events" icon={<FaCalendarAlt />} className="nav-item">
-            <Nav.Item>
-              <Link to="/UpcomingEvents" className="subnav-item">
-                <p>Upcoming Events</p>
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/PastEvents" className="subnav-item">
-                <p>Past Events</p>
-              </Link>
-            </Nav.Item>
-          </Nav.Menu> */}
-          <Nav.Item icon={<ImVideoCamera />}>
-           <Link to="/Events" className="nav-item">
-              <p>Events</p>
-            </Link>
-            </Nav.Item>
-          <Nav.Item icon={<BsPower />}>
-            <Link to="/" onClick={() => Auth.logout()} className="nav-item">
-              <p>Logout</p>
-            </Link>
-          </Nav.Item>
-        </Nav>
-      </Navbar>
-    );
+var styles = {
+  bmBurgerButton: {
+    position: "fixed",
+    width: "36px",
+    height: "30px",
+    right: "36px",
+    top: "20px",
+  },
+  bmBurgerBars: {
+    background: "#fff",
+  },
+  bmBurgerBarsHover: {
+    background: "#a90000",
+  },
+  bmCrossButton: {
+    height: "24px",
+    width: "24px",
+  },
+  bmCross: {
+    background: "#bdc3c7",
+  },
+  bmMenuWrap: {
+    position: "fixed",
+    height: "100%",
+  },
+  bmMenu: {
+    background: "#111",
+    padding: "2.5em 1.5em 0",
+    fontSize: "1.15em",
+  },
+  bmMorphShape: {
+    fill: "#373a47",
+  },
+  bmItemList: {
+    color: "#b8b7ad",
+    padding: "0.8em",
+  },
+  bmItem: {
+    display: "inline-block",
+  },
+  bmOverlay: {
+    background: "rgba(0, 0, 0, 0.3)",
+  },
+};
+//SETS 'VIEW' PROPS FOR NAV BAR
+function UserNav({ view, setView }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Keeps the isOpen state of the menu synced with menuOpen state.
+  const handleStateChange = (state) => {
+    setMenuOpen(state);
   };
-  const UserNav = () => {
-    const [activeKey, setActiveKey] = React.useState(null);
-  
-    return (
-      <>
-        <CustomUserNav
-          appearance="inverse"
-          activeKey={activeKey}
-          onSelect={setActiveKey}
-        />
-      </>
-    );
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
-  
-  export default UserNav;
+  const handleMobileNav = async (location) => {
+    closeMenu();
+    await setView(location);
+    console.log(location);
+  };
+
+  return (
+    //DESKTOP
+    <>
+      <nav className="navlist hidden md:flex flex-col justify-between text-slate-50">
+        <div
+          className="navlink  "
+          onClick={() => {
+            handleMobileNav("events");
+          }}
+        >
+          <Link to="/Events" className="nav-item">
+            What`s On
+          </Link>
+        </div>
+        <div
+          className="navlink"
+          onClick={() => {
+            handleMobileNav("tickets");
+          }}
+        >
+          <Link to="/Tickets" className="nav-item">
+            Your Tickets
+          </Link>
+        </div>
+        <div
+          className="navlink  "
+          onClick={() => {
+            handleMobileNav("profile");
+          }}
+        >
+          <Link to="/Profile" className="nav-item">
+            Profile
+          </Link>
+        </div>
+      </nav>
+
+      {/*MOBILE*/}
+      <nav className="md:hidden mb-10">
+        <Menu
+          styles={styles}
+          width={"100vw"}
+          right
+          isOpen={menuOpen}
+          onStateChange={({ menuOpen }) => handleStateChange(menuOpen)}
+        >
+          <div className="h-1/2 flex flex-col justify-between w-full">
+            <div
+              className="mobile-link"
+              onClick={() => {
+                handleMobileNav("events");
+              }}
+            >
+              <Link to="/Events" className="nav-item">
+                What`s On
+              </Link>
+            </div>
+            <div
+              className="mobile-link"
+              onClick={() => {
+                handleMobileNav("tickets");
+              }}
+            >
+              icon={<HomeIcon />}
+              <Link to="/Tickets" className="nav-item">
+                Your Tickets
+              </Link>
+            </div>
+
+            <div
+              className="mobile-link"
+              onClick={() => {
+                handleMobileNav("profile");
+              }}
+            >
+              <Link to="/Profile" className="nav-item">
+                Profile
+              </Link>
+            </div>
+            <div
+              className="mobile-link"
+              onClick={() => {
+                handleMobileNav("livestream");
+              }}
+            >
+              <Link to="/Livestream" className="nav-item">
+                Live Now
+              </Link>
+            </div>
+            {/* Resume Download */}
+          </div>
+        </Menu>
+      </nav>
+    </>
+  );
+}
+export default UserNav;

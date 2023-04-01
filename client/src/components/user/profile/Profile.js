@@ -3,6 +3,8 @@ import Auth from "../../../utils/auth";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from "@apollo/client";
 import Login from "../../home/Login/login";
+import image from "../../../assets/images/background8.png";
+import TopNav from "../TopBar";
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_USER } from "../../../utils/queries";
 import { useMainContext } from "../../../utils/GlobalState";
@@ -24,14 +26,23 @@ const Profile = () => {
   }
 
   return (
-    <div className="container">
-      <h2>
-        This is the User Profile Page which has been called by the Body(User)
-        <p />
-        You are {user.firstName}. It hosts the Profile-Body component:
-      </h2>
-      <Header user={user} />
-      <Body user={user} />
+    <div
+      className="background"
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
+    >
+      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+        <div>
+          <Header user={user} />
+        </div>
+        <div className="w-full">
+          <div>
+            <TopNav user={user} />
+          </div>
+          <div className="body-container ">
+            <Body user={user} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

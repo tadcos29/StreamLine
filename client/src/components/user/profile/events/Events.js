@@ -8,6 +8,8 @@ import { QUERY_USER } from "../../../../utils/queries";
 import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
 import EventBody from "./EventBody";
+import image from "../../../../assets/images/background8.png";
+import TopNav from "../../TopBar";
 
 const Events = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
@@ -23,14 +25,23 @@ const Events = () => {
     console.log("got data in events");
   }
   return (
-    <div className="container">
-      <h2>
-        This is the Events Page(User)
-        <p />
-        You are {user.firstName}. It hosts the Event-Body component:
-      </h2>
-      <Header user={user} />
-      <EventBody user={user} />
+    <div
+      className="background"
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
+    >
+      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+        <div>
+          <Header user={user} />
+        </div>
+        <div className="w-full">
+          <div>
+            <TopNav user={user} />
+          </div>
+          <div className="body-container ">
+            <EventBody user={user} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

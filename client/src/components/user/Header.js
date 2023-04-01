@@ -1,23 +1,25 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import UserNav from "./UserNav";
+import { Link } from "react-router-dom";
 import "./user.css";
-
-// import { Link } from "react-router-dom";
-// import { useQuery, useState } from '@apollo/client';
-// import Login from '../../components/home/Login/Login'
-// import SignUp from '../../components/home/signUp/SignUp'
-// import { QUERY_USER } from '../../utils/queries'
-// import { useMainContext } from '../../utils/GlobalState'
 
 const Header = (props) => {
   return (
-    <div className="header-container">
-      <div className="header">
-        <h1 className="h1header">Streamline</h1>
-        <div className="nav-div">
-          <UserNav {...props} className="nav-container" />
+    <div className="header-container flex my-0 w-5/6 md:h-auto md:flex-col md:w-64 md:min-w-[16rem] md:header-border md:p-5 md:pt-10">
+      <h1 className="h1header">Streamline</h1>
+      <div className=" flex md:flex-col h-full justify-between">
+        <div>
+          <UserNav {...props} />
         </div>
+
+        <Link
+          className="logout text-slate-50"
+          to="/"
+          onClick={() => Auth.logout()}
+        >
+          <p>Logout</p>
+        </Link>
       </div>
     </div>
   );
