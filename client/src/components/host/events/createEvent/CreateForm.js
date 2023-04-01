@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../../../utils/mutations';
 import { QUERY_EVENTS } from '../../../../utils/queries';
+import CurrencyInput from 'react-currency-input-field';
+
 
 import Auth from '../../../../utils/auth';
 
@@ -9,6 +11,7 @@ const CreateEventForm = () => {
     const [addEvent, { error, data }] = useMutation(ADD_EVENT, {
         refetchQueries: [{ query: QUERY_EVENTS }]
       });
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -35,14 +38,25 @@ const CreateEventForm = () => {
             variables: formData
         });
         console.log(data);
+        if (data && data.addEvent) {
+          setSuccess(true);
+        }
       } catch (error) {
         console.log(error);
       }
+      setFormData({
+        name: '',
+        description: '',
+        accessKey: '',
+        url: '',
+        admissionPrice: ''
+      });
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name *</label>
+      <label htmlForm="name">Name *</label>
       <input
         id="name"
         name="name"
@@ -51,14 +65,14 @@ const CreateEventForm = () => {
         onChange={handleChange}
         required
       />
-      <label htmlFor="description">Description</label>
+      <label htmlForm="description">Description</label>
       <textarea
         id="description"
         name="description"
         value={formData.description}
         onChange={handleChange}
       />
-      <label htmlFor="accessKey">Access Key</label>
+      <label htmlForm="accessKey">Access Key</label>
       <input
         id="accessKey"
         name="accessKey"
@@ -66,7 +80,7 @@ const CreateEventForm = () => {
         value={formData.accessKey}
         onChange={handleChange}
       />
-      <label htmlFor="url">URL</label>
+      <label htmlForm="url">URL</label>
       <input
         id="url"
         name="url"
@@ -74,7 +88,7 @@ const CreateEventForm = () => {
         value={formData.url}
         onChange={handleChange}
       />
-      <label htmlFor="admissionPrice">Admission Price</label>
+            <label htmlForm="admissionPrice">Admission Price</label>
       <input
         id="admissionPrice"
         name="admissionPrice"
@@ -85,6 +99,8 @@ const CreateEventForm = () => {
       />
       <button type="submit">Create Event</button>
     </form>
+    {success && <div>Successfully created event!</div>}
+    </>
   );
 };
 

@@ -17,7 +17,6 @@ import Signup from "./components/home/signUp/SignUp";
 // import Nav from './components/Nav';
 import { MainProvider } from "./utils/GlobalState";
 import UserHome from "./components/user/UserHome";
-import HostHome from "./components/host/HostHome";
 import Tickets from "./components/user/tickets/Tickets";
 import Profile from "./components/user/profile/Profile";
 import Livestream from "./components/livestream/Livestream";
@@ -58,7 +57,6 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/UserHome" element={<UserHome />} />
               <Route path="/CreateEvent" element={<CreateEvent />} />
-              <Route path="/HostHome" element={<HostHome />} />
               <Route path="/Tickets" element={<Tickets />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Livestream" element={<Livestream />} />

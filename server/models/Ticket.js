@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
+const dayjs = require('dayjs');
 
 const { Schema } = mongoose;
 
 const ticketSchema = new Schema({
   purchaseDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    get: (streamTime) => dayjs(streamTime).format('MMMM D[th], YYYY [at] HH:mm')
+
   },
   name: {
     type: String,
@@ -31,6 +34,13 @@ const ticketSchema = new Schema({
     type: Boolean,
     default: false
   }
+}, 
+{
+  toJSON: {
+    virtuals: true,
+    getters:true
+  },
+  id: false,
 });
 
 const Ticket = mongoose.model('Ticket', ticketSchema);

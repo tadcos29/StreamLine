@@ -5,6 +5,15 @@ export function pluralize(name, count) {
   return name + 's';
 }
 
+export function dollarFormat(number) {
+  const makeDollars= new Intl.NumberFormat("en-US", {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+ })
+ return makeDollars.format(number)
+}
+
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('shop-shop', 1);
