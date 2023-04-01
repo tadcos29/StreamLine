@@ -78,7 +78,7 @@ const resolvers = {
         const newTicket = await Ticket.create({ ...args, owner: context.user._id}
         );
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { created: newTicket } });
+        await User.findByIdAndUpdate(context.user._id, { $push: { tickets: newTicket } });
 
         return newTicket;
       }

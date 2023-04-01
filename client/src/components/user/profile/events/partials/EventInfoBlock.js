@@ -1,13 +1,25 @@
 import React, { useContext } from 'react';
-import { useQuery, useState } from "@apollo/client";
+import { useQuery, useState, useMutation } from "@apollo/client";
 import { useMainContext } from '../../../../../utils/GlobalState';
+import { ADD_TICKET } from '../../../../../utils/mutations';
+import { QUERY_USER } from '../../../../../utils/queries';
 
 const EventInfoBlock = () => {
+    const [addTicket, { error, data }] = useMutation(ADD_TICKET, {
+        refetchQueries: [{ query: QUERY_USER }]});
   const [state, dispatch] = useMainContext();
   const {UESelectedEvent} = state
-  const handleBuyClick = () => {
+  const handleBuyClick = async () => {
      // write ticket query
-    console.log('Buy button clicked');
+     try {
+     const { data } = await addTicket({ 
+        variables: {
+          event: eventData._id,
+        },
+      });
+    } catch (error) {
+        console.log(error);
+      }
   };
 
   if (!UESelectedEvent) {
