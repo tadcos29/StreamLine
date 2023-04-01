@@ -37,7 +37,13 @@ const TicketBody = ({ user }) => {
       {user.tickets ? (
         <>
           <h1>There might be tickets</h1>
-          {/* <Ticket/> */}
+          {(user.tickets.length) ? (
+            <ul>
+            {user.tickets.map((ticket) => (
+              <Ticket key={ticket._id} ticket={ticket} />
+            ))}
+          </ul>
+            ): ('no tickets')}
         </>
       ) : (
         <>

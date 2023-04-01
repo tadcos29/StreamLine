@@ -6,7 +6,7 @@ const typeDefs = gql`
   type Ticket {
     _id: ID
     purchaseDate: String
-    name: String!
+    name: String
     description: String
     owner: User
     event: Event
@@ -54,7 +54,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, ): Auth
-    addTicket(name: String!): Ticket
+    addTicket(event:ID): Ticket
 
     addEvent(
     name: String!

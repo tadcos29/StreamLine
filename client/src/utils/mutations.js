@@ -12,12 +12,23 @@ export const LOGIN = gql`
 `;
 
 export const ADD_TICKET = gql`
-  mutation addTicket(
-   $name: String!) {
-    addTicket(
-      name: $name
+  mutation addTicket($event: ID) {
+    addTicket(event: $event
     ) {
       name
+      description
+      owner {
+      _id
+      firstName
+      lastName
+      email
+     
+    }
+      event {
+        _id
+        
+      
+      }
     }
   }
 `;
