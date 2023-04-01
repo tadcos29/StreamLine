@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useState } from "@apollo/client";
 import Auth from "../../utils/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_USER } from "../../utils/queries";
 import "./user.css";
 const TopBar = () => {
@@ -18,18 +20,19 @@ const TopBar = () => {
   return (
     <div>
       <div>
-        <header className="topbar  flex md:flex-row justify-between ">
-          <h2 className="greeting align-middle my-auto">
-            Hello, {user.firstName}.
-          </h2>
-          <div className="livenowlink align-middle my-auto">
-            <Link to="/Livestream">Live Now</Link>
-          </div>
-          <div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        <header className="topbar flex md:flex-row justify-between ">
+          <div className="my-auto">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 my-auto py-2 px-4 rounded-md">
               <Link to="/CreateEvent">Create Event</Link>
             </button>
           </div>
+          <div className="livenowlink align-middle my-auto">
+            <FontAwesomeIcon className="stream-icon" icon={faCircleDot} />
+            <Link to="/Livestream">Live Now</Link>
+          </div>
+          <h2 className="greeting align-middle mr-5 my-auto">
+            {user.firstName} {user.lastName} {user.avatar}
+          </h2>
         </header>
       </div>
     </div>

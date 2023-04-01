@@ -19,7 +19,11 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
-    "rsuite": "^5.29.0"
+    "rsuite": "^5.29.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

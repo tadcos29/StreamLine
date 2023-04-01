@@ -1,36 +1,26 @@
 import React, { useEffect } from "react";
-
-
-import EventBody from '../user/profile/events/EventBody'
+import { QUERY_USER } from "../../utils/queries";
+import EventBody from "../user/profile/events/EventBody";
 import CreateEventForm from "../host/events/createEvent/CreateForm";
 import UpcomingEvents from "./profile/events/UpcomingEvents";
 import EventInfoBlock from "./profile/events/partials/EventInfoBlock";
+import "./user.css";
 
 const Body = ({ user }) => {
   return (
-    <div className="container">      <div style={{ display: 'flex', flexDirection: 'row', height: '50vh' }}>
-        <div style={{ width: '50%', height: '100%', backgroundColor: '#FF6961' }}>
-          <h1>Free Square</h1>
-        </div>
-        <div style={{ width: '50%', height: '100%', backgroundColor: '#ADD8E6', overflow: 'scroll' }}>
-          <UpcomingEvents />
-
-        </div>
+    <div className="dashboard">
+      <div className="dash-greeting">Hi, {user.firstName}</div>
+      <div className="dash-bio">
+        Checkout upcoming events and keep track of events you've RSVP'd to
       </div>
       <div style={{ display: "flex", flexDirection: "row", height: "50vh" }}>
-        <div
-          style={{ width: "50%", height: "100%", backgroundColor: "#77DD77" }}
-        >
-          <h1>Green Square</h1>
+        <div className="dash-section mr-3 w-2/5">
+          <UpcomingEvents />
+        </div>
 
+        <div className="dash-section ml-3 w-2/5">
           <EventInfoBlock />
         </div>
-        <div style={{ width: '50%', height: '100%', backgroundColor: '#FFFACD', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <h1>More Info</h1>
-        </div>
-        <div
-          style={{ width: "50%", height: "100%", backgroundColor: "#FFFACD" }}
-        ></div>
       </div>
     </div>
   );
