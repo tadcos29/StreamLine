@@ -7,5 +7,11 @@
   --red: #e75b5b; 
 }
 .container {
-  max-width: 100% ;
+  max-width: 100%;
 }
+/* Tailwind Import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@material-tailwind/react;
+

@@ -1,57 +1,115 @@
-@import '~rsuite/dist/rsuite.min.css';
+
 @import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
-#root{ padding: 10px; 
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+#root{
+max-height: 100%;
 width: 100%}
 
+.home-contain {
+    padding: 10px;
+}
 
-/*============================ HEADER ==============================*/
+.body-container {
+    max-height: 100vh;
+    overflow-y:scroll;
+    border-radius: 0px;
+    background-color: var(--light);
+}
+.ticket-container {
+    background-color:rgba(246,246,246,0.9); 
+}
+/*============================ SIDEBAR ==============================*/
 .header-container {
-    display: inline-flex;
-    width:100%;
+    background-color:rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+   border-radius: 10px;
+    padding: 10px;
+    height: 98vh;
 }
-.header {
-    display:inline-flex;
-    width:100%;
-}
+
 .h1header {
-    color: #e75b5b; 
+    color: var(--light); 
     font-family: 'Gajraj One', cursive;
-    text-align:center;
    padding: 2px 10px ;
-  
+  font-size: 2rem;
     }
-.nav-div {
-    width:100%;
+
+/*============================ TOPBAR ==============================*/
+
+ 
+.topbar {
+    border-radius: 5px;
+    background-color:rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+margin-left: 10px;
+margin-bottom:10px;
+padding:10px;
 }
 
-
-
-
-/*============================ NAV BAR ==============================*/
-.navbar {
-    border-radius: 50px;
-    background-color: var(--dark);
+.body-container {
+    margin-left: 10px;
+    border-radius: 5px;
+    height: 90vh;
+}
+.greeting {
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'Questrial', 'sans-serif';
 }
 
-.nav:hover {
-    border-radius: 50px;
-    background-color: var(--accent);
+/*============================ NAVLINKS ==============================*/
+
+
+.navlist {
+    padding-top: 70px;
+}
+.navlink {
+    font-family: 'Questrial', 'sans-serif';
+    padding: 20px;
+    text-align: left;
+margin-bottom: 65px;
+font-size: 1rem;
+}
+.livenowlink{
+    font-family: 'Questrial', 'sans-serif';
+    font-size: 1rem;
+    color: white;
 }
 
-.nav-item {
-    color: var(--light);
-
+.navlink:hover {
+    background-color: rgba(255,255,255,0.3); 
+    scale: .95;
+    border-radius: 5px;
 }
 
-.nav-item:hover {
-    color: var(--light);
-    text-decoration: none;
-    
-}
-.subnav-item{
-    color: var(--mid);
+.logout {
+    font-family: 'Questrial', 'sans-serif';
+    padding: 20px;
+    text-align: left;
+margin-bottom: 35px;
+font-size: 1rem;
 }
 
-.subnav-item:hover{
-    text-decoration: none;
+.logout:hover {
+    background-color: rgba(255,255,255,0.3); 
+    scale: .95;
+    border-radius: 5px;
+}
+/*============================ NAVLINKS ==============================*/
+.eventcard {
+    background-color: rgba(255,255,255,0.8); 
+    border-radius: 5px;
+}
+
+.ticket-card {
+    background-color: rgba(255,255,255,0.8); 
+    border-radius: 5px; 
+    width: 300px;
+    height: 150px;
+    border: 1px solid black;
+    display: inline-block;
+    margin:10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 10px;
 }

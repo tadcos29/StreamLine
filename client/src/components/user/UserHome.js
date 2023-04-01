@@ -6,6 +6,9 @@ import { QUERY_USER } from "../../utils/queries";
 // This body is the tickets body
 import Body from "./Body";
 import Header from "./Header";
+import TopNav from "./TopBar";
+import image from "../../assets/images/background8.png";
+import "./user.css";
 
 const UserHome = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
@@ -19,13 +22,23 @@ const UserHome = () => {
   }
 
   return (
-    <div className="container">
-      <h1>
-        Welcome to User Home, {user.firstName}. This is the User Home parent
-        component
-      </h1>
-      <Header user={user} />
-      <Body user={user} />
+    <div
+      className="background"
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
+    >
+      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+        <div>
+          <Header user={user} />
+        </div>
+        <div className="w-full">
+          <div>
+            <TopNav user={user} />
+          </div>
+          <div className="body-container ">
+            <Body user={user} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

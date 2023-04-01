@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const EventCard = ({eventData, handleClick}) => {
@@ -19,22 +20,25 @@ const EventCard = ({eventData, handleClick}) => {
     cursor: 'pointer'
   };
 
-  const liveText = isLive ? 'Currently Live' : '';
-  const pastText = isPast ? 'Past Event' : '';
+  const liveText = isLive ? "Currently Live" : "";
+  const pastText = isPast ? "Past Event" : "";
   const statusText = isLive ? liveText : pastText;
 
-  const accessText = accessKey ? 'Restricted' : 'Public';
+  const accessText = accessKey ? "Restricted" : "Public";
 
   const handleIndividualClick = () => {
     handleClick(eventData);
   }
 
   return (
-    <div style={cardStyle} onClick={handleIndividualClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+
+    <div className="eventcard" style={cardStyle} onClick={handleIndividualClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <div>
         <h3>{name}</h3>
         <p>{description}</p>
-        <p>Created by {creator.firstName} {creator.lastName}</p>
+        <p>
+          Created by {creator.firstName} {creator.lastName}
+        </p>
       </div>
       <div>
         <p>{statusText}</p>

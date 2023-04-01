@@ -11,7 +11,6 @@ import Body from "./EventBody";
 import EventCard from "./partials/EventCard";
 import CreateEventForm from "../../../host/events/createEvent/CreateForm";
 
-
 const EventBody = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
   const {
@@ -36,13 +35,13 @@ const EventBody = () => {
     eventList = evData.events;
     console.log("got an event list");
     console.log(eventList);
+
     myEventList=eventList.filter(event => event.creator._id === user._id);
   }
   return (
-    <div className="container">
+    <div className="event-container">
       <h2>
         This is the Events Body
-        <CreateEventForm/>
         <p />
       </h2>
       <h2>This list will filter the user's own events</h2>
@@ -52,7 +51,6 @@ const EventBody = () => {
             <EventCard key={myEvent._id} eventData={myEvent} />
           ))}
         </ul>
-       
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ const TicketBody = ({ user }) => {
   ];
 
   return (
-    <div className="container">
+    <div>
       <h2>This is the Tickets Body component, hosted by Tickets.js</h2>
       {user.tickets ? (
         <>
