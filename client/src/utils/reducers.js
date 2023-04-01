@@ -37,7 +37,7 @@ export const reducer = (state, action) => {
       console.log(action.payload);
       return {
         ...state,
-        OESelectedEvent: action.payload
+        UESelectedEvent: action.payload
           };
     case SET_OE_EVENT: 
     if (!state.OESelectedEvent) {state.OESelectedEvent=false}
