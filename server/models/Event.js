@@ -26,7 +26,7 @@ const eventSchema = new Schema({
     type: String,
   },
   url: {
-    type: Date,
+    type: String,
   },
   isLive: {
     type: Boolean,

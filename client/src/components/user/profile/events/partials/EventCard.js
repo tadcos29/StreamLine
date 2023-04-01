@@ -1,26 +1,23 @@
-import React from "react";
 
-const EventCard = ({ event }) => {
-  const {
-    name,
-    description,
-    creator,
-    accessKey,
-    url,
-    isLive,
-    isPast,
-    admissionPrice,
-  } = event;
+import React, { useState } from 'react';
 
-  const boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.25)";
+const EventCard = ({eventData, handleClick}) => {
+  const { _id, name, description, creator, accessKey, url, isLive, isPast, admissionPrice } = eventData;
+
+  const [hovered, setHovered] = useState(false);
+
+  const boxShadow = `0px 2px 4px rgba(0, 0, 0, ${hovered ? '0.4' : '0.25'})`;
+  const backgroundColor = hovered ? '#fff' : '#f8f8f8';
   const cardStyle = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "20px",
-    borderRadius: "10px",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '10px',
     boxShadow,
+    backgroundColor,
+    cursor: 'pointer'
   };
 
   const liveText = isLive ? "Currently Live" : "";
@@ -29,8 +26,13 @@ const EventCard = ({ event }) => {
 
   const accessText = accessKey ? "Restricted" : "Public";
 
+  const handleIndividualClick = () => {
+    handleClick(eventData);
+  }
+
   return (
-    <div className="eventcard" style={cardStyle}>
+
+    <div className="eventcard" style={cardStyle} onClick={handleIndividualClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <div>
         <h3>{name}</h3>
         <p>{description}</p>
