@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../../../utils/mutations';
 import { QUERY_EVENTS } from '../../../../utils/queries';
-import CurrencyInput from 'react-currency-input-field';
+// import CurrencyInput from 'react-currency-input-field';
 
 
 import Auth from '../../../../utils/auth';

@@ -5,7 +5,9 @@ const { authMiddleware } = require('./utils/auth');
 const multer = require('multer');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const mongoose = require('mongoose');
 
+const Avatar = require ('./models/Avatar')
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -13,30 +15,32 @@ const app = express();
 
 // MULTER BLOCK
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
+const storage =  multer.memoryStorage();
 // keeping a limit on the img files for multer
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 500000 }, 
-  fileFilter: function (req, file, cb) {
-    if (!file.mimetype.startsWith('image/')) {
-      return cb(new Error('Only image files are allowed!'));
-    }
-    cb(null, true);
-  },
+  limits: { fileSize: 5000000 }, 
+  // fileFilter: function (req, file, cb) {
+  //   if (!file.mimetype.startsWith('image/')) {
+  //     return cb(new Error('Only image files are allowed!'));
+  //   }
+  //   cb(null, true);
+  // },
 });
 
-app.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
     res.status(400).json({ message: 'No file uploaded' });
   } else {
+    console.log('receiving file');
+    let imageUploadObject = {
+      file: {
+        data: req.file.buffer,
+        contentType: req.file.mimetype
+      },
+      fileName: req.body.fileName
+    };
+    if (imageUploadObject.file.data) {console.log('there is image data;'+req.file.mimetype);}
     res.json({ message: 'File uploaded successfully' });
   }
 });
