@@ -5,6 +5,7 @@ import { useQuery, useState } from "@apollo/client";
 import Login from "../../../home/Login/login";
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_EVENTS, QUERY_USER } from "../../../../utils/queries";
+import { SET_OE_EVENT } from "../../../../utils/actions";
 import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
 import Body from "./EventBody";
@@ -13,6 +14,18 @@ import CreateEventForm from "../../../host/events/createEvent/CreateForm";
 
 const EventBody = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
+  const [state, dispatch] = useMainContext();
+
+  const handleEventClick = (eventData) => {
+    if (eventData) {
+    dispatch({
+      type: SET_OE_EVENT,
+      payload:eventData
+
+    });
+  }
+  }
+
   const {
     loading: evLoading,
     error: evError,
@@ -48,7 +61,7 @@ const EventBody = () => {
       <div style={{ overflowY: "scroll", height: "250px" }}>
         <ul>
           {myEventList.map((myEvent) => (
-            <EventCard key={myEvent._id} eventData={myEvent} />
+            <EventCard key={myEvent._id} eventData={myEvent} handleClick={handleEventClick}  />
           ))}
         </ul>
       </div>

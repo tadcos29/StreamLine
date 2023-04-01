@@ -7,7 +7,7 @@ import Auth from "../../utils/auth";
 import { FaTicketAlt } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { BsFillPersonFill, BsPower } from "react-icons/bs";
-import { ImVideoCamera } from "react-icons/im";
+import { ImVideoCamera, ImHome } from "react-icons/im";
 import { MdDashboardCustomize } from "react-icons/md";
 
 import "./user.css";
@@ -138,7 +138,7 @@ function UserNav({ view, setView }) {
                 handleMobileNav("tickets");
               }}
             >
-              icon={<HomeIcon />}
+              icon={<ImHome />}
               <Link to="/Tickets" className="nav-item">
                 Your Tickets
               </Link>

@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
+const dayjs = require('dayjs');
+
 
 const { Schema } = mongoose;
 
 const eventSchema = new Schema({
   streamTime: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    get: (streamTime) => dayjs(streamTime).format('MMMM D[th], YYYY [at] HH:mm')
+
   },
   name: {
     type: String,
@@ -39,9 +43,21 @@ const eventSchema = new Schema({
   admissionPrice: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
+    get: (admissionPrice) => (admissionPrice/100).toFixed(2),
+    set: (admissionPrice) => (admissionPrice*100)
+
+
   },
-});
+},
+{
+  toJSON: {
+    virtuals: true,
+    getters:true
+  },
+  id: false,
+}
+);
 
 const Event = mongoose.model('Event', eventSchema);
 

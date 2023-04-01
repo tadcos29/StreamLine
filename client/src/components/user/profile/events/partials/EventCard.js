@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-
+import { dollarFormat } from '../../../../../utils/helpers';
 const EventCard = ({eventData, handleClick}) => {
   const { _id, name, description, creator, accessKey, url, isLive, isPast, admissionPrice } = eventData;
 
@@ -29,7 +29,8 @@ const EventCard = ({eventData, handleClick}) => {
   const handleIndividualClick = () => {
     handleClick(eventData);
   }
-
+  
+ let formattedCurrency= dollarFormat(admissionPrice)
   return (
 
     <div className="eventcard" style={cardStyle} onClick={handleIndividualClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
@@ -43,8 +44,8 @@ const EventCard = ({eventData, handleClick}) => {
       <div>
         <p>{statusText}</p>
         <p>{accessText}</p>
-        <p>{url}</p>
-        <p>{admissionPrice}</p>
+        {/* <p>{url}</p> */}
+        <p>{(formattedCurrency=0) ? formattedCurrency : 'Free'}</p>
       </div>
     </div>
   );

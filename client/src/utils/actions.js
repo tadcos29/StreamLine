@@ -1,5 +1,7 @@
 export const TOGGLE_LOG = "TOGGLE_LOG";
 export const SET_UE_EVENT = "SET_UE_EVENT";
+export const SET_OE_EVENT = "SET_OE_EVENT";
+
 
 export const ADD_TO_CART = "ADD_TO_CART";
 export const ADD_MULTIPLE_TO_CART = "ADD_MULTIPLE_TO_CART";

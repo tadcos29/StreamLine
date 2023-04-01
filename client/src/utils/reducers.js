@@ -9,7 +9,8 @@ import {
   // CLEAR_CART,
   // TOGGLE_CART,
   TOGGLE_LOG,
-  SET_UE_EVENT
+  SET_UE_EVENT,
+  SET_OE_EVENT
 } from './actions';
 
 const initialState = {
@@ -36,7 +37,15 @@ export const reducer = (state, action) => {
       console.log(action.payload);
       return {
         ...state,
-        UESelectedEvent: action.payload
+        OESelectedEvent: action.payload
+          };
+    case SET_OE_EVENT: 
+    if (!state.OESelectedEvent) {state.OESelectedEvent=false}
+      console.log('insetoe');
+      console.log(action.payload);
+      return {
+        ...state,
+        OESelectedEvent: action.payload
           };
         
     // case ADD_TO_CART:
