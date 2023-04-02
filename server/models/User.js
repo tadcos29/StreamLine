@@ -31,8 +31,14 @@ const userSchema = new Schema({
     required: true,
     default: false
   },
+  avatar: {
+    type: String,
+    required: false,
+    default:''
+    },
   tickets: [Ticket.schema],
-  created: [Event.schema]
+  created: [Event.schema],
+  
 });
 
 // set up pre-save middleware to create password

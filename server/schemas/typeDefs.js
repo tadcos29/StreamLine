@@ -36,6 +36,7 @@ const typeDefs = gql`
     created: [Event]
     accessKeys:[String]
     isHost: Boolean
+    avatar:String
   }
 
  
@@ -66,7 +67,7 @@ const typeDefs = gql`
     admissionPrice: Float
   ): Event
 
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String): User
     login(email: String!, password: String!): Auth
   }
 `;
