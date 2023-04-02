@@ -70,6 +70,15 @@ const resolvers = {
       return { token, user };
     },
 
+    toggleEvent: async(parent, {_id, isLive}, context) => {
+      if (context.user) {
+        console.log('in-toggle-event');
+        return await Event.findByIdAndUpdate(_id, {isLive}, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
     // add Ticket
     addTicket: async (parent, args, context) => {
       console.log('inaddticket');

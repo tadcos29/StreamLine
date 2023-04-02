@@ -3,6 +3,7 @@ import { useQuery, useState, useMutation } from "@apollo/client";
 import { useMainContext } from '../../../../../utils/GlobalState';
 import { ADD_TICKET } from '../../../../../utils/mutations';
 import { QUERY_USER } from '../../../../../utils/queries';
+import ToggleTest from './ToggleTest';
 
 const EventInfoBlock = () => {
     const [addTicket, { error, data }] = useMutation(ADD_TICKET, {
@@ -38,8 +39,10 @@ const EventInfoBlock = () => {
       <p>Creator: {eventData.creator.firstName} {eventData.creator.lastName}</p>
       <p>Access Key: {eventData.accessKey || 'Public'}</p>
       <p>URL: {eventData.url}</p>
+      <p>isActive: {eventData.isLive}</p>
       <p>Admission Price: {eventData.admissionPrice}</p>
       <button onClick={handleBuyClick}>Buy Ticket</button>
+
     </div>
   );
 };

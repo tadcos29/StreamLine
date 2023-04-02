@@ -62,6 +62,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, ): Auth
     addTicket(event:ID): Ticket
+    toggleEvent(_id:ID!, isLive:Boolean): Event
 
     addEvent(
     name: String!

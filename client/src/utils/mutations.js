@@ -33,6 +33,36 @@ export const ADD_TICKET = gql`
   }
 `;
 
+export const TOGGLE_EVENT = gql`
+  mutation toggleEvent(
+    $_id: ID!,
+    $isLive:Boolean) {
+    toggleEvent(
+      _id:$_id,
+      isLive:$isLive
+    ) {
+    _id
+    name
+    description
+    creator {
+      _id
+      firstName
+      lastName
+      email
+    }
+    accessKey
+    url
+    isLive
+    isPast
+    admissionPrice
+  }
+  }
+`;
+
+
+
+
+
 export const UPLOAD_AVATAR = gql`
   mutation uploadAvatar($event: ID) {
     addTicket(event: $event

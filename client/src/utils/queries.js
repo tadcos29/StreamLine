@@ -61,6 +61,7 @@ export const QUERY_TICKET = gql`
       _id
       name
       description
+      isLive
       creator{
         avatar
       }
@@ -78,6 +79,7 @@ export const QUERY_TICKETS = gql`
       _id
       name
       description
+      isLive
       url
       creator {
         avatar
@@ -100,6 +102,7 @@ export const QUERY_USER = gql`
         name
         purchaseDate
         event {
+          isLive
           name
           streamTime
           url
