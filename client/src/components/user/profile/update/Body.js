@@ -6,7 +6,7 @@ import Auth from '../../../../utils/auth';
 import UpdateUserForm from './UpdateUserForm';
 import Avatar from '../partials/Avatar'
 
-const Body = ({ user }) => {
+const Body = ( {user} ) => {
 
     const [updateUser, {error, data}] = useMutation(UPDATE_USER, {
       refetchQueries: [{ query: QUERY_USER }],
@@ -31,7 +31,7 @@ const Body = ({ user }) => {
   };
     return (
       <div>
-      <Avatar/>
+      <Avatar user={user}/>
       <h1>This is the Update component's body component.</h1><br/>
       <h1>At last, a form {user.firstName}</h1>
       <div>

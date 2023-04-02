@@ -34,7 +34,7 @@ const TopBar = () => {
           </div>
           <h2 className="greeting align-middle mr-5 my-auto">
             {user.firstName} {user.lastName} 
-            <ShowAvatar user={user} style={{ maxWidth: '100%' }}/>
+            <ShowAvatar user={user} style={{ maxWidth: '100%', objectFit:'contain' }}/>
 
           </h2>
         </header>
