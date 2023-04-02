@@ -4,15 +4,10 @@ import { Link } from "react-router-dom";
 import image from "../../../../../assets/images/ticketbg-1.png";
 import { dollarFormat } from '../../../../../utils/helpers';
 import ShowAvatar from "../../partials/ShowAvatar";
-import { gql, useMutation } from "@apollo/client";
-import { TOGGLE_EVENT  } from '../../../../../utils/mutations';
-
-
-const EventCard = ({eventData, handleClick}) => {
+const EventCardHome = ({eventData, handleClick}) => {
   const { _id, name, description, creator, accessKey, url, isLive, isPast, admissionPrice } = eventData;
 
   const [hovered, setHovered] = useState(false);
-  const [live, setLive] = useState(false);
 
   const boxShadow = `0px 2px 4px rgba(0, 0, 0, ${hovered ? '0.4' : '0.25'})`;
   const backgroundColor = hovered ? '#fff' : '#f8f8f8';
@@ -34,22 +29,10 @@ const EventCard = ({eventData, handleClick}) => {
 
   const accessText = accessKey ? "Restricted" : "Public";
 
-
   const handleIndividualClick = () => {
     handleClick(eventData);
   }
-  const [toggleEvent] = useMutation(TOGGLE_EVENT);
-
-  const handleToggle = () => {
-    setLive(!live);
-    toggleEvent({
-      variables: {
-        _id,
-        isLive: live
-      }
-    });
-  };
-
+  
  let formattedCurrency= dollarFormat(admissionPrice)
   return (
 
@@ -79,21 +62,11 @@ const EventCard = ({eventData, handleClick}) => {
       <p>{url}</p>
       <p>{formattedCurrency}</p>
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md" onClick={handleIndividualClick}>
-        View Details!!!
+        View Details
       </button>
-      {live && (
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md" onClick={handleToggle}>
-            Start Live Stream
-          </button>
-          )}
-      {!live && (
-        <button className="bg-red-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md" onClick={handleToggle}>
-          Stop Live Stream
-        </button>
-      )}
     </div>
   </div>
   );
 };
 
-export default EventCard;
+export default EventCardHome;
