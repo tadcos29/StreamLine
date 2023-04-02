@@ -35,6 +35,7 @@ export const QUERY_EVENTS = gql`
         firstName
         lastName
         _id
+        avatar
       }
       accessKey
     url
@@ -60,6 +61,9 @@ export const QUERY_TICKET = gql`
       _id
       name
       description
+      creator{
+        avatar
+      }
     }
     }
   }
@@ -74,6 +78,10 @@ export const QUERY_TICKETS = gql`
       _id
       name
       description
+      url
+      creator {
+        avatar
+      }
     }
       
     }
@@ -100,3 +108,4 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
