@@ -3,6 +3,7 @@ import "../../../user.css";
 import { Link } from "react-router-dom";
 import image from "../../../../../assets/images/ticketbg-1.png";
 import { dollarFormat } from '../../../../../utils/helpers';
+import ShowAvatar from "../../partials/ShowAvatar";
 const EventCard = ({eventData, handleClick}) => {
   const { _id, name, description, creator, accessKey, url, isLive, isPast, admissionPrice } = eventData;
 
@@ -44,10 +45,10 @@ const EventCard = ({eventData, handleClick}) => {
       display: "flex",
       flexDirection: "row",
     }}
-    onClick={handleIndividualClick}
+    
     onMouseEnter={() => setHovered(true)}
     onMouseLeave={() => setHovered(false)}
-  >
+  ><ShowAvatar user={creator} style={{}}/>
     <div className="w-1/2">
       <h3 className="ticketname">{name}</h3>
       <p className="my-2">{description}</p>
@@ -60,7 +61,7 @@ const EventCard = ({eventData, handleClick}) => {
       <p>{accessText}</p>
       <p>{url}</p>
       <p>{formattedCurrency}</p>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md" onClick={handleIndividualClick}>
         View Details
       </button>
     </div>
