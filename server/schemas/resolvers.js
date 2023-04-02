@@ -57,7 +57,7 @@ const resolvers = {
           }
         }) // ticket populate
         .populate('created');
-        // user.tickets.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.tickets.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
       }
@@ -68,23 +68,25 @@ const resolvers = {
     
     // stripe attempt
 
-    checkout: async (parent, args, context) => {
+    checkout: async (parent, {event}, context) => {
       // this should actually be the event, possibly
       const url = new URL(context.headers.referer).origin; // might change this to tickets
       // this should likely be a findticket mongoose query
       // and probably an args.event rather than args
       const line_items = [];
       console.log('incheckout');
-      console.log(args);
+      console.log(event);
+      const foundEvent = await Event.findById(event);
+      console.log(foundEvent);
       // see if it's the event
       // const { products } = await order.populate('products');
       const product = await stripe.products.create ({
-        name: 'testname',
-        description: 'testdesc',
+        name: foundEvent.name,
+        description: foundEvent.description
       })
       const price = await stripe.prices.create({
         product: product.id,
-        unit_amount: 20000,
+        unit_amount: foundEvent.admissionPrice*100,
         currency: 'cad'
       })
 
@@ -99,8 +101,8 @@ const resolvers = {
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
-        success_url: `${url}/`,
-        cancel_url: `${url}/`  // need fix
+        success_url: `${url}/success`,
+        cancel_url: `${url}/failure`  // need fix
       });
 
       return { session: session.id };

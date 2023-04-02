@@ -9,24 +9,52 @@ import ToggleTest from './ToggleTest';
 
 const stripePromise = loadStripe('pk_test_51MsMqBHgq2gnLMifvc15OqYndHy9thmRA7B3uQYlTzZK9Ex8qRXU7Wn8XujstxUaTMLZ4qCNB0VDs95VTZN4cADP003D7EOE5x');
 
+
+
+// try {
+  //  const { addTdata } = await addTicket({ 
+  //     variables: {
+  //       event: eventData._id,
+  //     },
+  //   });
+  // } catch (error) {
+  //     console.log(error);
+  //   }
+
+
+
 const EventInfoBlock = () => {
   const [queryCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  const [addTicket, { error, data: addTData }] = useMutation(ADD_TICKET, {
+  const [addTicket, { error, data:addTdata }] = useMutation(ADD_TICKET, {
     refetchQueries: [{ query: QUERY_USER }]
   });
   const [state, dispatch] = useMainContext();
   const { UESelectedEvent } = state;
   const handleBuyClick = async () => {
+
+  // try {
+  //  const { addTdata } = await addTicket({ 
+  //     variables: {
+  //       event: eventData._id,
+  //     },
+  //   });
+  // } catch (error) {
+  //     console.log(error);
+  //   }
+
+
     try {
       console.log(eventData);
       const { data } = await queryCheckout({
         variables: {
-          event: eventData._id,
+          event:eventData._id
         },
       });
 
       if (data) {
         const stripe = await stripePromise;
+        // what if we set the session id here, and watched for it?
+        // add a session to the array of sessions...
         stripe.redirectToCheckout({ sessionId: data.checkout.session })
           .then(function (result) {
             if (result.error) {

@@ -55,6 +55,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/success" element={<Tickets />} />
+              <Route path="/failure" element={<UserHome />} />
               <Route path="/UserHome" element={<UserHome />} />
               <Route path="/CreateEvent" element={<CreateEvent />} />
               <Route path="/Tickets" element={<Tickets />} />
@@ -63,6 +65,7 @@ function App() {
               <Route path="/Events" element={<Events />} />
               <Route path="/PastEvents" element={<PastEvents />} />
               <Route path="/UpcomingEvents" element={<UpcomingEvents />} />
+              
               {/* <Route 
                 path="/success" 
                 element={<Success />} 
