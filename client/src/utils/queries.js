@@ -16,7 +16,7 @@ export const QUERY_EVENT = gql`
       }
       accessKey
     url
-     
+    isLive
     isPast
     admissionPrice
     }
