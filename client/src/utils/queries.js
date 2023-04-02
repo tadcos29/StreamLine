@@ -102,6 +102,7 @@ export const QUERY_USER = gql`
         name
         purchaseDate
         event {
+          _id
           isLive
           name
           streamTime

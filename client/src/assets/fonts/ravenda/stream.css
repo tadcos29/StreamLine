@@ -1,0 +1,49 @@
+.twitch-player-overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .twitch-player-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 87%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .twitch-player-overlay3 {
+    position: absolute;
+    top: 0;
+    left: 30%;
+    right: 40%;
+    bottom: 70%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .twitch-player-overlay4 {
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    right: 40%;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+/* .twitch-player-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+  } */
+  
+.twitch-player-container {
+  position: relative;
+  width: 620px;
+  height: 378px;
+}
