@@ -9,7 +9,7 @@ import { QUERY_EVENTS, QUERY_USER } from "../../../../utils/queries";
 import { useMainContext } from "../../../../utils/GlobalState";
 import Header from "../../Header";
 import Body from "./EventBody";
-import EventCard from "./partials/EventCard";
+import EventCardHome from "./partials/EventCardHome";
 import CreateEventForm from "../../../host/events/createEvent/CreateForm";
 import "../../user.css";
 const UpcomingEvents = () => {
@@ -57,7 +57,7 @@ const UpcomingEvents = () => {
       <div className="event-ticket">
         <ul>
           {eventList.map((myEvent) => (
-            <EventCard
+            <EventCardHome
               key={myEvent._id}
               eventData={myEvent}
               handleClick={handleEventClick}

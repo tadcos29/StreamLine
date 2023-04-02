@@ -21,6 +21,7 @@ const Player = ({ user }) => {
     const newMessages = [...sentMessages, messageData];
     setSentMessages(newMessages);
 
+    // Store the messages in local storage
     localStorage.setItem(`${twitchid}-messages`, JSON.stringify(newMessages));
   };
 
