@@ -6,12 +6,14 @@ export function pluralize(name, count) {
 }
 
 export function dollarFormat(number) {
+  if (number===0) { return 'Free'} else {
   const makeDollars= new Intl.NumberFormat("en-US", {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2,
  })
  return makeDollars.format(number)
+}
 }
 
 export function idbPromise(storeName, method, object) {
