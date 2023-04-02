@@ -15,13 +15,12 @@ const Body = ({ user }) => {
     const handleUpdateUser = async (formData) => {
     console.log('inhandleupdate');
     console.log(formData);
+    let newUser={...formData}
+    if (newUser.password==='') {delete newUser.password}
     try {
       const response = await updateUser({
         variables: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password:formData.password
+          ...newUser
         }
       });
     } catch (error) {

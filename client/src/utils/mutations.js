@@ -33,6 +33,29 @@ export const ADD_TICKET = gql`
   }
 `;
 
+export const UPLOAD_AVATAR = gql`
+  mutation uploadAvatar($event: ID) {
+    addTicket(event: $event
+    ) {
+      name
+      description
+      owner {
+      _id
+      firstName
+      lastName
+      email
+     
+    }
+      event {
+        _id
+        
+      
+      }
+    }
+  }
+`;
+
+
 export const ADD_EVENT = gql`
  mutation addEvent(
   $name: String!
@@ -96,6 +119,6 @@ mutation updateUser($firstName: String, $lastName: String, $email: String, $pass
     firstName
     lastName
     email
-  }
+      }
 }`;
 

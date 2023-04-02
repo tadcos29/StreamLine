@@ -39,40 +39,24 @@ function Avatar() {
     });
     const data = await response.json();
 
-    // Log the response to the console
-
-    console.log('nowdata');
-    console.log(data);
-    let stringdata={...data, file: {
-        ...data.file, data: {
-          ...data.file.data, data: Base64.btoa(data.file.data.data)
-        }
-      }
-    }
-    let newFileObject={contentType:data.contentType, data:data.file.data.data}
-
     /// RIGHT
 
     let actualFile=data.file;
-    const blob = new Blob([new Uint8Array(actualFile.data.data)], {type: actualFile.contentType});
-    actualFile.data.data=Base64.btoa(data.file.data.data)
+    let stringied=JSON.stringify(actualFile);
+
+    
+ 
+    let reparsed=JSON.parse(stringied);
+
+    console.log(reparsed);
+
+    const blob = new Blob([new Uint8Array(reparsed.data.data)], {type: reparsed.contentType});
     let objUrl=URL.createObjectURL(blob);
     setImageUrl(objUrl)
 
     //
 
-    // let newdata=Base64.btoa(JSON.parse(stringdata));
-   let stringified=JSON.stringify(stringdata);
 
-    let newdata=JSON.parse(stringified);
-    let binaryChunk=Base64.atob(newdata.file.data.data).split(',')
-    let digitisedbinary=binaryChunk.map((str) => Number(str))
-
-    newdata.file.data.data=digitisedbinary;
-    // console.log(newdata);
-    // console.log('for comparison...');
-    // console.log(data);
-    
 
 
 

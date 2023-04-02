@@ -106,7 +106,7 @@ const resolvers = {
         console.log('inupdateuser-resolver');
         // return await User.findByIdAndUpdate(context.user._id, args, { new: true });
         userRec = await User.findById(context.user._id);
-        console.log(userRec);
+        console.log(args);
         Object.assign(userRec, args);
         userRec.save();
       }
