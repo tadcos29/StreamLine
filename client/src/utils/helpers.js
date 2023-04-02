@@ -16,6 +16,15 @@ export function dollarFormat(number) {
 }
 }
 
+
+
+export function avatarImage (avatar) {
+      let reparsed = JSON.parse(avatar);
+      const blob = new Blob([new Uint8Array(reparsed.data.data)], {type: reparsed.contentType});
+      let objUrl = URL.createObjectURL(blob);
+      return objUrl;
+    }
+
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('shop-shop', 1);

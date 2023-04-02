@@ -9,20 +9,24 @@ function Avatar() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   // const [uploadImage] = useMutation(UPLOAD_AVATAR);
-
-  // When a user selects a file, set the state variable to that file
+  const [updateUser, {error, data}] = useMutation(UPDATE_USER, 
+    
+    {
+      refetchQueries: [{ query: QUERY_USER }],
+    }
+    
+    );
+  // set the state variable to selected file
   const handleFileInputChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    setSelectedFile(e.target.files[0])
   };
 
-  // When the form is submitted, create a new FormData object and append the selected file to it
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Create a new FormData object
     const formData = new FormData();
 
-    // Append the selected file to the FormData object
     formData.append('file', selectedFile);
     // let stringified=JSON.stringify(selectedFile);
     // console.log(selectedFile);
@@ -43,8 +47,18 @@ function Avatar() {
 
     let actualFile=data.file;
     let stringied=JSON.stringify(actualFile);
+    console.log('stringied');
+    console.log(stringied);
+    try {
+      const response = await updateUser({
+        variables: {
+          avatar: stringied
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
 
-    
  
     let reparsed=JSON.parse(stringied);
 

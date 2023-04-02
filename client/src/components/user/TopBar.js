@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_USER } from "../../utils/queries";
 import "./user.css";
+import ShowAvatar from "./profile/partials/ShowAvatar";
+
 const TopBar = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
   let user;
@@ -31,7 +33,9 @@ const TopBar = () => {
             <Link to="/Livestream">Live Now</Link>
           </div>
           <h2 className="greeting align-middle mr-5 my-auto">
-            {user.firstName} {user.lastName} {user.avatar}
+            {user.firstName} {user.lastName} 
+            <ShowAvatar user={user} style={{ maxWidth: '100%' }}/>
+
           </h2>
         </header>
       </div>

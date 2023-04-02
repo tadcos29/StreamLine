@@ -3,6 +3,12 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
 
+# type Avatar {
+#     _id: ID
+#     userID: User!
+#     image: String
+#   }
+
   type Ticket {
     _id: ID
     purchaseDate: String

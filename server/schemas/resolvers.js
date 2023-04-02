@@ -36,7 +36,9 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-      user: async (parent, args, context) => {
+
+
+    user: async (parent, args, context) => {
       console.log('ingetuserresolver');
 
       if (context.user) {
@@ -109,6 +111,7 @@ const resolvers = {
         console.log(args);
         Object.assign(userRec, args);
         userRec.save();
+        return userRec;
       }
 
       throw new AuthenticationError('Not logged in');

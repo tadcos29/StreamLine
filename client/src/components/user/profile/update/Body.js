@@ -17,6 +17,7 @@ const Body = ({ user }) => {
     console.log(formData);
     let newUser={...formData}
     if (newUser.password==='') {delete newUser.password}
+    if (newUser.email==='') {delete newUser.email}
     try {
       const response = await updateUser({
         variables: {
@@ -32,7 +33,7 @@ const Body = ({ user }) => {
       <div>
       <Avatar/>
       <h1>This is the Update component's body component.</h1><br/>
-      <h1>At last, a form.</h1>
+      <h1>At last, a form {user.firstName}</h1>
       <div>
       <UpdateUserForm user={user} onUpdate={handleUpdateUser} />
          </div>

@@ -113,12 +113,13 @@ export const ADD_USER = gql`
   }
 `;
 export const UPDATE_USER = gql`
-mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String)
+mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String, $avatar:String)
 {
-  updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, avatar:$avatar) {
     firstName
     lastName
     email
+    avatar
       }
 }`;
 

@@ -6,6 +6,7 @@ const multer = require('multer');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const Avatar = require ('./models/Avatar')
 const PORT = process.env.PORT || 3001;
@@ -54,8 +55,10 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.json({ limit: '1mb' }));
+app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
@@ -72,7 +75,9 @@ app.get('/', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, bodyParserConfig: {
+    limit:"1mb"
+  } });
   
   db.once('open', () => {
     app.listen(PORT, () => {
