@@ -6,6 +6,7 @@ export function pluralize(name, count) {
 }
 
 export function dollarFormat(number) {
+  if (number===0) { return 'Free'} else {
   const makeDollars= new Intl.NumberFormat("en-US", {
     style: 'currency',
     currency: 'USD',
@@ -13,6 +14,16 @@ export function dollarFormat(number) {
  })
  return makeDollars.format(number)
 }
+}
+
+
+
+export function avatarImage (avatar) {
+      let reparsed = JSON.parse(avatar);
+      const blob = new Blob([new Uint8Array(reparsed.data.data)], {type: reparsed.contentType});
+      let objUrl = URL.createObjectURL(blob);
+      return objUrl;
+    }
 
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {

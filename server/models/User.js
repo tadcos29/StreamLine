@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const Ticket = require('./Ticket');
 const Event = require('./Event');
 
+
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -31,9 +32,26 @@ const userSchema = new Schema({
     required: true,
     default: false
   },
+  avatar: {
+    type: String,
+    required: false,
+    default:'',
+
+ 
+
+    },
   tickets: [Ticket.schema],
-  created: [Event.schema]
+  created: [Event.schema],
+  
+},{
+  toJSON: {
+    virtuals: true,
+    getters:true
+  },
+  id: false,
 });
+
+
 
 // set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {

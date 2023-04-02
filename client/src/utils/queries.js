@@ -13,6 +13,7 @@ export const QUERY_EVENT = gql`
         firstName
         lastName
         _id
+        avatar
       }
       accessKey
     url
@@ -86,6 +87,7 @@ export const QUERY_USER = gql`
       firstName
       lastName
       email
+      avatar
       tickets{
         name
         purchaseDate
@@ -95,15 +97,6 @@ export const QUERY_USER = gql`
           url
         }
       }
-      
-      # tickets {
-      #   name
-      #   purchaseDate
-      #   expired
-      #   event {
-      #     name
-      #   }
-      # }
     }
   }
 `;

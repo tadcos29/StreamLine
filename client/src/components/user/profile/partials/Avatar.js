@@ -1,43 +1,81 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
+import { UPDATE_USER } from '../../../../utils/mutations';
+import {QUERY_USER} from '../../../../utils/queries'
+import { Base64 } from 'js-base64';
+import ShowAvatar from './ShowAvatar'
 
-function Avatar() {
+function Avatar({user}) {
   // Declare a state variable to store the selected file
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   // const [uploadImage] = useMutation(UPLOAD_AVATAR);
-
-  // When a user selects a file, set the state variable to that file
+  const [updateUser, {error, data}] = useMutation(UPDATE_USER, 
+    
+    {
+      refetchQueries: [{ query: QUERY_USER }],
+    }
+    
+    );
+  // set the state variable to selected file
   const handleFileInputChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    setSelectedFile(e.target.files[0])
+    setImageUrl(selectedFile)
   };
 
-  // When the form is submitted, create a new FormData object and append the selected file to it
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Create a new FormData object
     const formData = new FormData();
 
-    // Append the selected file to the FormData object
     formData.append('file', selectedFile);
+    // let stringified=JSON.stringify(selectedFile);
+    // console.log(selectedFile);
+    // console.log(stringified)
+    // let destringified=JSON.parse(stringified);
+
+
+
+
     // Send a POST request to the /upload endpoint with the FormData object as the body
     const response = await fetch('/upload', {
       method: 'POST',
       body: formData,
     });
     const data = await response.json();
-    setImageUrl(data.url);
 
-    // Log the response to the console
     
-    console.log(response);
-    console.log('supposedly done');
+    /// RIGHT
+
+    let actualFile=data.file;
+    let stringied=JSON.stringify(actualFile);
+
+    try {
+      const response = await updateUser({
+        variables: {
+          avatar: stringied
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+
+   
+
+    //
+
+
+
+
+
+  
   };
 
   return (
     <div>
-      <h1>Upload Avatar</h1>
+      <h1>Upload Avatar, {user.firstName}</h1>
       <form onSubmit={handleFormSubmit}>
         <input type="file" name="file" onChange={handleFileInputChange} />
 
@@ -45,9 +83,10 @@ function Avatar() {
           Submit
         </button>
       </form>
-      {imageUrl && (
-        <img src={imageUrl} alt="Uploaded avatar" style={{ maxWidth: '100%' }} />
-      )}
+      
+      {(imageUrl) ? (
+        <img src={imageUrl} alt="Uploaded avatar" style={{ maxWidth: '100%', height: 'auto' }} />
+      ) : (<ShowAvatar user={user} style={{ maxWidth: '100%', height: 'auto' }}/> )}
     </div>
   );
 }

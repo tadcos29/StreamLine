@@ -36,7 +36,9 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-      user: async (parent, args, context) => {
+
+
+    user: async (parent, args, context) => {
       console.log('ingetuserresolver');
 
       if (context.user) {
@@ -106,9 +108,9 @@ const resolvers = {
         console.log('inupdateuser-resolver');
         // return await User.findByIdAndUpdate(context.user._id, args, { new: true });
         userRec = await User.findById(context.user._id);
-        console.log(userRec);
         Object.assign(userRec, args);
         userRec.save();
+        return userRec;
       }
 
       throw new AuthenticationError('Not logged in');

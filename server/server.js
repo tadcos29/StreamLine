@@ -6,6 +6,7 @@ const multer = require('multer');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const Avatar = require ('./models/Avatar')
 const PORT = process.env.PORT || 3001;
@@ -19,7 +20,7 @@ const storage =  multer.memoryStorage();
 // keeping a limit on the img files for multer
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 5000000 }, 
+  limits: { fileSize: 500000 }, 
   // fileFilter: function (req, file, cb) {
   //   if (!file.mimetype.startsWith('image/')) {
   //     return cb(new Error('Only image files are allowed!'));
@@ -32,16 +33,16 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
     res.status(400).json({ message: 'No file uploaded' });
   } else {
-    console.log('receiving file');
+  
     let imageUploadObject = {
       file: {
         data: req.file.buffer,
         contentType: req.file.mimetype
       },
-      fileName: req.body.fileName
+      fileName: req.file.originalname
     };
     if (imageUploadObject.file.data) {console.log('there is image data;'+req.file.mimetype);}
-    res.json({ message: 'File uploaded successfully' });
+    res.json(imageUploadObject);
   }
 });
 
@@ -54,8 +55,10 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.json({ limit: '1mb' }));
+app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
@@ -72,7 +75,9 @@ app.get('/', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, bodyParserConfig: {
+    limit:"1mb"
+  } });
   
   db.once('open', () => {
     app.listen(PORT, () => {

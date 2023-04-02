@@ -33,6 +33,29 @@ export const ADD_TICKET = gql`
   }
 `;
 
+export const UPLOAD_AVATAR = gql`
+  mutation uploadAvatar($event: ID) {
+    addTicket(event: $event
+    ) {
+      name
+      description
+      owner {
+      _id
+      firstName
+      lastName
+      email
+     
+    }
+      event {
+        _id
+        
+      
+      }
+    }
+  }
+`;
+
+
 export const ADD_EVENT = gql`
  mutation addEvent(
   $name: String!
@@ -90,12 +113,13 @@ export const ADD_USER = gql`
   }
 `;
 export const UPDATE_USER = gql`
-mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String)
+mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String, $avatar:String)
 {
-  updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, avatar:$avatar) {
     firstName
     lastName
     email
-  }
+    avatar
+      }
 }`;
 

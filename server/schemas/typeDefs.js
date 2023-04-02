@@ -3,6 +3,12 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
 
+# type Avatar {
+#     _id: ID
+#     userID: User!
+#     image: String
+#   }
+
   type Ticket {
     _id: ID
     purchaseDate: String
@@ -36,6 +42,7 @@ const typeDefs = gql`
     created: [Event]
     accessKeys:[String]
     isHost: Boolean
+    avatar:String
   }
 
  
@@ -66,7 +73,7 @@ const typeDefs = gql`
     admissionPrice: Float
   ): Event
 
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String): User
     login(email: String!, password: String!): Auth
   }
 `;
