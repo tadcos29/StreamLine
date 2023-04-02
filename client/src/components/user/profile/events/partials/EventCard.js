@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../user.css";
 import { Link } from "react-router-dom";
 import image from "../../../../../assets/images/ticketbg-1.png";
@@ -6,13 +6,20 @@ import { dollarFormat } from '../../../../../utils/helpers';
 import ShowAvatar from "../../partials/ShowAvatar";
 import { gql, useMutation } from "@apollo/client";
 import { TOGGLE_EVENT  } from '../../../../../utils/mutations';
+import { QUERY_TICKETS  } from '../../../../../utils/queries';
 
 
 const EventCard = ({eventData, handleClick}) => {
   const { _id, name, description, creator, accessKey, url, isLive, isPast, admissionPrice } = eventData;
-
   const [hovered, setHovered] = useState(false);
-  const [live, setLive] = useState(false);
+  const [live, setLive] = useState(false); 
+
+  useEffect(() => {
+    if (typeof isLive !== 'undefined') {
+      setLive(isLive);
+    }
+  }, [isLive]);
+    //console.log(live)
 
   const boxShadow = `0px 2px 4px rgba(0, 0, 0, ${hovered ? '0.4' : '0.25'})`;
   const backgroundColor = hovered ? '#fff' : '#f8f8f8';
@@ -46,8 +53,10 @@ const EventCard = ({eventData, handleClick}) => {
       variables: {
         _id,
         isLive: live
-      }
+      },
+      refetchQueries: [{ query: QUERY_TICKETS }]
     });
+    
   };
 
  let formattedCurrency= dollarFormat(admissionPrice)

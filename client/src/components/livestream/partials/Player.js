@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import "../../../assets/fonts/ravenda/stream.css"
 
 const socket = io.connect("http://localhost:3001");
 
@@ -52,14 +53,25 @@ const Player = ({ user }) => {
   return (
     <div>
       <h2>Player</h2>
-      <iframe
-        src={`https://player.twitch.tv/?channel=${twitchid}&parent=livestream-tickets.herokuapp.com`}
-        frameBorder="0"
-        allowFullScreen="true"
-        scrolling="no"
-        height="378"
-        width="620"
-      ></iframe>
+
+      <div className="twitch-player-container">
+      <div className="twitch-player-overlay1"></div>
+      <div className="twitch-player-overlay2"></div>
+
+        <div className="twitch-player-overlay"></div>
+        <iframe
+          src={`https://player.twitch.tv/?channel=${twitchid}&parent=localhost&autoplay=true&muted=false`}
+          frameBorder="0"
+          allowFullScreen="true"
+          scrolling="no"
+          height="378"
+          width="620"
+          background-color= "rgba(0, 0, 0, .5)"
+        ></iframe>
+          {/* <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '24px' }}>
+            Text in the middle
+          </div> */}
+      </div>
 
       <div className="App">
         <input
