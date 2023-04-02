@@ -18,12 +18,15 @@ const Player = ({ user }) => {
     socket.emit("send_message", messageData);
     console.log("message sent");
 
-    // Add the sent message to the state array
     const newMessages = [...sentMessages, messageData];
     setSentMessages(newMessages);
 
-    // Store the messages in local storage
     localStorage.setItem(`${twitchid}-messages`, JSON.stringify(newMessages));
+  };
+
+  const fetchMessages = () => {
+    const storedMessages = localStorage.getItem(`${twitchid}-messages`);
+    setSentMessages(storedMessages ? JSON.parse(storedMessages) : []);
   };
 
   useEffect(() => {
@@ -31,13 +34,19 @@ const Player = ({ user }) => {
       setSentMessages((prevMessages) => [...prevMessages, data]);
     });
   }, [socket]);
+
+  useEffect(() => {
+    const interval = setInterval(fetchMessages, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const list = document.querySelector('ul');
 
   list.querySelectorAll('li').forEach(li => {
     if (!li.classList.contains(twitchid)) {
       li.style.display = "none";
     }
-});
+  });
 
   return (
     <div>
@@ -50,7 +59,7 @@ const Player = ({ user }) => {
         height="378"
         width="620"
       ></iframe>
-    
+
       <div className="App">
         <input
           placeholder="Message..."
