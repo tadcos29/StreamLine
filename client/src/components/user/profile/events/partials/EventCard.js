@@ -64,6 +64,13 @@ const EventCard = ({eventData, handleClick}) => {
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md" onClick={handleIndividualClick}>
         View Details
       </button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md">
+            Start Live Stream
+          </button>
+          <button className="bg-green-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md">
+            Live Stream Started
+          </button>
+
     </div>
   </div>
   );
