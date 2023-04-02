@@ -9,6 +9,10 @@ const typeDefs = gql`
 #     image: String
 #   }
 
+type Checkout {
+    session: ID
+  }
+
   type Ticket {
     _id: ID
     purchaseDate: String
@@ -57,6 +61,7 @@ const typeDefs = gql`
     ticket (_id: ID!): Ticket
     events: [Event]
     event (_id: ID!): Event
+    checkout(event: ID!): Checkout
   }
 
   type Mutation {
