@@ -135,7 +135,7 @@ const CreateEventForm = (props) => {
     }
   return (
     <>
-      <div class="form text-sky-800">
+      <div class="form text-white">
         <form onSubmit={handleSubmit}>
           <legend class="section_title">{(mode==='edit') ? 'Update' : 'Create'} Event</legend>
 
