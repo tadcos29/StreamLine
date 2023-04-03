@@ -56,9 +56,11 @@ const UpcomingEvents = () => {
       <h2 className="dash-bio">View all future events hosted on StreamLine</h2>
       <div className="event-ticket">
         <ul>
-          {eventList.map((myEvent) => (
+        {eventList
+          .sort((a, b) => new Date(b.created) - new Date(a.created))
+          .map((myEvent) => (
             <EventCardHome
-              key={myEvent._id}
+              key={`${myEvent._id}${myEvent.created}`}
               eventData={myEvent}
               handleClick={handleEventClick}
             />
