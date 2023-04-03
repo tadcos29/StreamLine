@@ -199,13 +199,14 @@ export const ADD_USER = gql`
   }
 `;
 export const UPDATE_USER = gql`
-mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String, $avatar:String)
-{
-  updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, avatar:$avatar) {
-    firstName
-    lastName
-    email
-    avatar
-      }
-}`;
+  mutation updateUser($firstName: String, $lastName: String, $email: String, $password: String, $avatar: String, $accessKeys: [String]) {
+    updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, avatar: $avatar, accessKeys: $accessKeys) {
+      firstName
+      lastName
+      email
+      avatar
+      accessKeys
+    }
+  }
+`;
 

@@ -94,7 +94,7 @@ type Checkout {
     admissionPrice: Float
   ): Event
 
-    updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String): User
+    updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String, accessKeys:[String]): User
     login(email: String!, password: String!): Auth
   }
 `;
