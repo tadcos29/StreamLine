@@ -61,14 +61,26 @@ export const TOGGLE_EVENT = gql`
 
 export const SET_PURCHASE = gql`
   mutation setCurrentPurchase($event: ID) {
-    setCurrentPurchase(event: $event
-    )   {
-        
-          currentPurchase
-       }
+    setCurrentPurchase(event: $event) {
+      _id
+      firstName
+      lastName
+      email
+      tickets {
+        _id
+      }
+      created {
+        _id
+      }
+      accessKeys
+      isHost
+      avatar
+      currentPurchase {
+        _id
+      }
+    }
   }
 `;
-
 
 
 

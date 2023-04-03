@@ -50,7 +50,7 @@ const EventInfoBlock = () => {
 } else {
     try {
 
-    const newUser = await setPurchase({
+    const {userData} = await setPurchase({
       variables: {
         event: eventData._id,
       },

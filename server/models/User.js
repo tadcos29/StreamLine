@@ -36,17 +36,15 @@ const userSchema = new Schema({
     type: String,
     required: false,
     default:'',
-
- 
-
+    },
+    currentPurchase: {
+      type: Schema.Types.ObjectId,
+      ref: 'Event',
+      required: false,
     },
   tickets: [Ticket.schema],
   created: [Event.schema],
-  currentPurchase: {
-    type: Schema.Types.ObjectId,
-    ref: 'Event',
-    required: false,
-  }
+  
   
 },{
   toJSON: {

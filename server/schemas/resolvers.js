@@ -126,13 +126,18 @@ const resolvers = {
       return { token, user };
     },
 
-    setCurrentPurchase: async (parent, {_id}, context) => {
+    setCurrentPurchase: async (parent, { event }, context) => {
       if (context.user) {
-        foundEvent=await Event.findById(_id);
-        modifiedUser=await User.findByIdAndUpdate(context.user._id, { $push: { currentPurchase: foundEvent } });
-        return modifiedUser;
+        console.log('inscp');
+        const foundEvent = await Event.findById(event);
+        modifiedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { currentPurchase: foundEvent },
+          { new: true }
+        );
+            return modifiedUser;
       }
-
+    
       throw new AuthenticationError('Not logged in');
     },
 
