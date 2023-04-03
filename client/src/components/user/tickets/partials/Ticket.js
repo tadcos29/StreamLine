@@ -58,14 +58,13 @@ const Ticket = ({ ticket }) => {
               id="link"
               onClick={handleLinkClick}
               data-url={ticket.event.url}
+              className="streamlink bg-gray-900 bg-gradient-to-r hover:bg-teal-900 font-bold ml-5 py-4 px-4 rounded-md"
             >
-              <button className="streamlink bg-gray-900 bg-gradient-to-r hover:bg-teal-900 font-bold ml-5 py-4 px-4 rounded-md">
                 View Livestream
                 <FontAwesomeIcon
                   className="text-right ml-2 w-5 h-5"
                   icon={faCirclePlay}
                 />{" "}
-              </button>
             </Link>
           ) : (
             <Link
