@@ -116,6 +116,7 @@ export const QUERY_USER = gql`
       lastName
       email
       avatar
+      accessKeys
       tickets{
         name
         purchaseDate

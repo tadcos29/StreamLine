@@ -203,6 +203,7 @@ const resolvers = {
     updateUser: async (parent, args, context) => {
       if (context.user) {
         console.log('inupdateuser-resolver');
+        console.log(args);
         // return await User.findByIdAndUpdate(context.user._id, args, { new: true });
         userRec = await User.findById(context.user._id);
         Object.assign(userRec, args);

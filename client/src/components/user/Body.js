@@ -4,6 +4,7 @@ import EventBody from "../user/profile/events/EventBody";
 import CreateEventForm from "../host/events/createEvent/CreateForm";
 import UpcomingEvents from "./profile/events/UpcomingEvents";
 import EventInfoBlock from "./profile/events/partials/EventInfoBlock";
+import AccessCode from "./tickets/partials/AccessCode";
 import "./user.css";
 
 const Body = ({ user }) => {
@@ -14,6 +15,10 @@ const Body = ({ user }) => {
         Buy tickets to upcoming events. Enter access codes for private events.
       </div>
       <div>
+      <div>
+      <AccessCode user={user}/>
+      </div>
+   
         <h2 className="upcoming-events-title">What's On</h2>
         <h2 className="dash-bio">
           View all future events hosted on StreamLine

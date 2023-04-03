@@ -44,6 +44,12 @@ const userSchema = new Schema({
     },
   tickets: [Ticket.schema],
   created: [Event.schema],
+  accessKeys: {
+    type: [String],
+    required: false,
+    default: []
+  },
+  
   
   
 },{

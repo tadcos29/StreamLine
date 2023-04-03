@@ -34,6 +34,7 @@ const UpcomingEvents = () => {
   let user;
   let eventList;
   let reversed;
+  let secured;
   let myEventList;
   if (loading || evLoading) {
     return <h1>Loading Events...</h1>;
@@ -49,19 +50,30 @@ const UpcomingEvents = () => {
     eventList = evData.events;
     console.log("got an event list");
     console.log(eventList);
-    reversed = [...eventList].reverse(); // myEventList=eventList.filter(event => event.creator._id === user._id);
+    reversed = [...eventList].reverse();
+    secured = reversed.filter(obj => {
+      if (obj.accessKey !== '') {
+        if (!user.accessKeys.includes(obj.accessKey)) {
+          return false;
+        }
+      }
+      return true;
+    });    
+    // myEventList=eventList.filter(event => event.creator._id === user._id);
+
   }
   return (
     <div className="upcoming-events">
       <div className="event-ticket">
         <ul>
-          {reversed.map((myEvent) => (
-            <EventCardHome
-              key={`${myEvent._id}${myEvent.streamTime}`}
-              eventData={myEvent}
-              handleClick={handleEventClick}
-            />
-          ))}
+        {secured.map((myEvent) => (
+          <EventCardHome
+            key={`${myEvent._id}${myEvent.streamTime}`}
+            eventData={myEvent}
+            handleClick={handleEventClick}
+          />
+        ))}
+
         </ul>
       </div>
     </div>
