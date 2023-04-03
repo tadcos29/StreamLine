@@ -104,22 +104,21 @@ const EventCard = ({ eventData, handleClick }) => {
               View Details
             </button>
 
-            {!live && (
-              <button
-                className="  bg-red-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md"
-                onClick={handleToggle}
-              >
-                Stop Live Stream
-              </button>
-            )}
-            {live && (
-              <button
-                class="bg-green-500 hover:bg-green-600 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
-                onClick={handleToggle}
-              >
-                Start Live Stream
-              </button>
-            )}
+            {!isLive ? (
+          <button
+            class="bg-green-500 hover:bg-lime-400 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
+            onClick={handleToggle}
+          >
+            Start Live Stream
+          </button>
+        ) : (
+          <button
+            className="bg-red-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md"
+            onClick={handleToggle}
+          >
+            Stop Live Stream
+          </button>
+        )}
           </div>
         </div>
       </div>
