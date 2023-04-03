@@ -6,12 +6,15 @@ import DatePicker from "react-datepicker";
 import setMinutes from "date-fns/setMinutes";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
+import { useMainContext } from '../../../../utils/GlobalState';
 
 import "../../../user/user.css";
 
 import Auth from "../../../../utils/auth";
 
 const CreateEventForm = () => {
+  const [state, dispatch] = useMainContext();
+
   const [addEvent, { error, data }] = useMutation(ADD_EVENT, {
     refetchQueries: [{ query: QUERY_EVENTS }],
   });
