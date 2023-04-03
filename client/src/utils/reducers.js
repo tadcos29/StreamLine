@@ -10,7 +10,10 @@ import {
   // TOGGLE_CART,
   TOGGLE_LOG,
   SET_UE_EVENT,
-  SET_OE_EVENT
+  SET_OE_EVENT,
+  SET_CURRENT_PURCHASE,
+  CLEAR_CURRENT_PURCHASE
+
 } from './actions';
 
 const initialState = {
@@ -47,6 +50,23 @@ export const reducer = (state, action) => {
         ...state,
         OESelectedEvent: action.payload
           };
+    case SET_CURRENT_PURCHASE: 
+    if (!state.currentPurchase) {state.currentPurchase=false}
+      // console.log('incurrp');
+      console.log(action.payload);
+      return {
+        ...state,
+        currentPurchase: action.payload
+          };
+    case CLEAR_CURRENT_PURCHASE: 
+    if (!state.currentPurchase) {state.currentPurchase=false}
+      console.log('incllrp');
+      console.log(action.payload);
+      return {
+        ...state,
+        currentPurchase: {}
+          };
+
         
     // case ADD_TO_CART:
     //   return {

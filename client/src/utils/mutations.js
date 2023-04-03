@@ -59,31 +59,54 @@ export const TOGGLE_EVENT = gql`
   }
 `;
 
-
-
-
-
-export const UPLOAD_AVATAR = gql`
-  mutation uploadAvatar($event: ID) {
-    addTicket(event: $event
-    ) {
-      name
-      description
-      owner {
+export const SET_PURCHASE = gql`
+  mutation setCurrentPurchase($event: ID) {
+    setCurrentPurchase(event: $event) {
       _id
       firstName
       lastName
       email
-     
-    }
-      event {
+      tickets {
         _id
-        
-      
+      }
+      created {
+        _id
+      }
+      accessKeys
+      isHost
+      avatar
+      currentPurchase {
+        _id
       }
     }
   }
 `;
+
+
+
+
+
+// export const UPLOAD_AVATAR = gql`
+//   mutation uploadAvatar($event: ID) {
+//     addTicket(event: $event
+//     ) {
+//       name
+//       description
+//       owner {
+//       _id
+//       firstName
+//       lastName
+//       email
+     
+//     }
+//       event {
+//         _id
+        
+      
+//       }
+//     }
+//   }
+// `;
 
 
 export const ADD_EVENT = gql`

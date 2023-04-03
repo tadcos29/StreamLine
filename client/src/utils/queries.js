@@ -24,6 +24,16 @@ export const QUERY_EVENT = gql`
   }
 `;
 
+export const GET_PURCHASE = gql`
+  query getCurrentPurchase {
+    getCurrentPurchase {
+      _id
+      
+    }
+  }
+`;
+
+
 export const QUERY_EVENTS = gql`
   {
     events {
@@ -86,6 +96,14 @@ export const QUERY_TICKETS = gql`
       }
     }
       
+    }
+  }
+`;
+
+export const QUERY_CHECKOUT = gql`
+  query checkout($event: ID!) {
+    checkout(event: $event) {
+      session
     }
   }
 `;

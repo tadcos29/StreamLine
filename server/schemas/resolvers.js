@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Ticket, Event } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_51MsMqBHgq2gnLMifCZiHinKLSbYxFKwiubX5xxwhxDBOK8BMxTm5kzQGl0HQiWROVt1qXVRUeT7anGpPIFCLYm2z00s8tqPGws');
 
 const resolvers = {
   Query: {
@@ -13,6 +13,19 @@ const resolvers = {
       if (context.user) {
         const foundTicket = await Ticket.findById(_id).populate('owner event');
         return foundTicket;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+// deleteevent
+
+
+
+    getCurrentPurchase: async (parent, args, context) => {
+      if (context.user) {
+        const foundUser = await User.findById(context.user._id);
+        return foundUser.currentPurchase;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -51,7 +64,7 @@ const resolvers = {
           }
         }) // ticket populate
         .populate('created');
-        // user.tickets.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.tickets.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
       }
@@ -60,7 +73,50 @@ const resolvers = {
     },
     
     
+    // stripe attempt
+
+    checkout: async (parent, {event}, context) => {
+      // this should actually be the event, possibly
+      const url = new URL(context.headers.referer).origin; // might change this to tickets
+      // this should likely be a findticket mongoose query
+      // and probably an args.event rather than args
+      const line_items = [];
+      console.log('incheckout');
+      console.log(event);
+      const foundEvent = await Event.findById(event);
+      console.log(foundEvent);
+      // see if it's the event
+      // const { products } = await order.populate('products');
+      const product = await stripe.products.create ({
+        name: foundEvent.name,
+        description: foundEvent.description
+      })
+      const price = await stripe.prices.create({
+        product: product.id,
+        unit_amount: foundEvent.admissionPrice*100,
+        currency: 'cad'
+      })
+
+      line_items.push({
+        price:price.id,
+        quantity:1
+          });
+      console.log('assembled');
+      console.log(line_items);
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success`,
+        cancel_url: `${url}/failure`  // need fix
+      });
+
+      return { session: session.id };
+    }
   },
+
+
   Mutation: {
     addUser: async (parent, args) => {
       console.log('inadduser');
@@ -69,6 +125,23 @@ const resolvers = {
 
       return { token, user };
     },
+
+    setCurrentPurchase: async (parent, { event }, context) => {
+      if (context.user) {
+        console.log('inscp');
+        const foundEvent = await Event.findById(event);
+        modifiedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { currentPurchase: foundEvent },
+          { new: true }
+        );
+            return modifiedUser;
+      }
+    
+      throw new AuthenticationError('Not logged in');
+    },
+
+
 
     toggleEvent: async(parent, {_id, isLive}, context) => {
       if (context.user) {

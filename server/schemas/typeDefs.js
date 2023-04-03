@@ -9,6 +9,10 @@ const typeDefs = gql`
 #     image: String
 #   }
 
+type Checkout {
+    session: ID
+  }
+
   type Ticket {
     _id: ID
     purchaseDate: String
@@ -43,6 +47,7 @@ const typeDefs = gql`
     accessKeys:[String]
     isHost: Boolean
     avatar:String
+    currentPurchase:Event
   }
 
  
@@ -57,12 +62,16 @@ const typeDefs = gql`
     ticket (_id: ID!): Ticket
     events: [Event]
     event (_id: ID!): Event
+    checkout(event: ID!): Checkout
+    getCurrentPurchase: Event
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, ): Auth
     addTicket(event:ID): Ticket
     toggleEvent(_id:ID!, isLive:Boolean): Event
+
+    setCurrentPurchase(event:ID):User
 
     addEvent(
     name: String!
