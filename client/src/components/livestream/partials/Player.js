@@ -14,41 +14,41 @@ const Player = ({ user }) => {
     return storedMessages ? JSON.parse(storedMessages) : [];
   });
 
-  const sendMessage = () => {
-    const messageData = { message, room, sender: user.firstName };
-    socket.emit("send_message", messageData);
-    console.log("message sent");
+  // const sendMessage = () => {
+  //   const messageData = { message, room, sender: user.firstName };
+  //   socket.emit("send_message", messageData);
+  //   console.log("message sent");
 
-    const newMessages = [...sentMessages, messageData];
-    setSentMessages(newMessages);
+  //   const newMessages = [...sentMessages, messageData];
+  //   setSentMessages(newMessages);
 
-    // Store the messages in local storage
-    localStorage.setItem(`${twitchid}-messages`, JSON.stringify(newMessages));
-  };
+  //   // Store the messages in local storage
+  //   localStorage.setItem(`${twitchid}-messages`, JSON.stringify(newMessages));
+  // };
 
-  const fetchMessages = () => {
-    const storedMessages = localStorage.getItem(`${twitchid}-messages`);
-    setSentMessages(storedMessages ? JSON.parse(storedMessages) : []);
-  };
+  // const fetchMessages = () => {
+  //   const storedMessages = localStorage.getItem(`${twitchid}-messages`);
+  //   setSentMessages(storedMessages ? JSON.parse(storedMessages) : []);
+  // };
 
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setSentMessages((prevMessages) => [...prevMessages, data]);
-    });
-  }, [socket]);
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     setSentMessages((prevMessages) => [...prevMessages, data]);
+  //   });
+  // }, [socket]);
 
-  useEffect(() => {
-    const interval = setInterval(fetchMessages, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(fetchMessages, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
-  const list = document.querySelector("ul");
+  // const list = document.querySelector("ul");
 
-  list.querySelectorAll("li").forEach((li) => {
-    if (!li.classList.contains(twitchid)) {
-      li.style.display = "none";
-    }
-  });
+  // list.querySelectorAll("li").forEach((li) => {
+  //   if (!li.classList.contains(twitchid)) {
+  //     li.style.display = "none";
+  //   }
+  // });
 
   return (
     <div>
@@ -70,7 +70,7 @@ const Player = ({ user }) => {
             Text in the middle
           </div> */}
       </div>
-      <h2 className="profile-label">Leave comments as {user.firstName}</h2>
+      {/* <h2 className="profile-label">Leave comments as {user.firstName}</h2>
       <div className="App w-2/3">
         <input
           placeholder="Message..."
@@ -96,7 +96,7 @@ const Player = ({ user }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
