@@ -10,6 +10,8 @@ import Header from "../../Header";
 import EventBody from "./EventBody";
 import image from "../../../../assets/images/background8.png";
 import TopNav from "../../TopBar";
+import OwnEventInfoBlock from "./partials/OwnEventInfoBlock";
+import CreateEventForm from "../../../host/events/createEvent/CreateForm";
 
 const Events = () => {
   const { loading, meErr, data } = useQuery(QUERY_USER);
@@ -36,6 +38,8 @@ const Events = () => {
           </div>
           <div className="body-container ">
             <EventBody user={user} />
+            <OwnEventInfoBlock user={user}/>
+            <CreateEventForm user={user} mode={'edit'} />
           </div>
         </div>
       </div>

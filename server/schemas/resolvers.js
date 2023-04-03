@@ -91,8 +91,8 @@ const resolvers = {
       // const { products } = await order.populate('products');
       const product = await stripe.products.create ({
         name: foundEvent.name,
-        description: foundEvent.description
-      })
+        ...(foundEvent.description && { description: foundEvent.description })
+            })
       const price = await stripe.prices.create({
         product: product.id,
         unit_amount: foundEvent.admissionPrice*100,
@@ -183,6 +183,19 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+
+    updateEvent: async (parent, args, context) => {
+      console.log('ineditevent');
+      console.log(args);
+      if (context.user) {
+        const newEvent = await Event.findByIdAndUpdate(args._id,args,{new:true});
+        return newEvent;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
 
 
 // updateUser

@@ -34,9 +34,9 @@ const Success = () => {
       }
     }
 
-    // setTimeout(() => {
-    //   window.location.assign('/Tickets');
-    // }, 2000);
+    setTimeout(() => {
+      window.location.assign('/Tickets');
+    }, 2000);
 
     if (queryData) {
       processPurchase();

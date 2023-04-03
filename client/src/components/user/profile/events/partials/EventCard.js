@@ -23,13 +23,6 @@ const EventCard = ({ eventData, handleClick }) => {
   const [hovered, setHovered] = useState(false);
   const [live, setLive] = useState(false);
 
-  useEffect(() => {
-    if (typeof isLive !== "undefined") {
-      setLive(isLive);
-    }
-  }, [isLive]);
-  //console.log(live)
-
   const boxShadow = `0px 2px 4px rgba(0, 0, 0, ${hovered ? "0.4" : "0.25"})`;
   const backgroundColor = hovered ? "#fff" : "#f8f8f8";
   const cardStyle = {
@@ -82,6 +75,7 @@ const EventCard = ({ eventData, handleClick }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+
       <div className="w-full grid grid-cols-6">
         <div className="avatar-ticket flex my-auto col-span-1">
           <ShowAvatar user={creator} style={{ borderRadius: "10px" }} />

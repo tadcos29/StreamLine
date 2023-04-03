@@ -3,20 +3,19 @@ import { useQuery, useState, useMutation } from "@apollo/client";
 import { useMainContext } from '../../../../../utils/GlobalState';
 import { ADD_TICKET } from '../../../../../utils/mutations';
 import { QUERY_USER } from '../../../../../utils/queries';
+import { EDIT_MODE } from '../../../../../utils/actions';
 
-const EventInfoBlock = () => {
+const OwnEventInfoBlock = () => {
     // const [addTicket, { error, data }] = useMutation(ADD_TICKET, {
     //     refetchQueries: [{ query: QUERY_USER }]});
   const [state, dispatch] = useMainContext();
-  const {OESelectedEvent} = state
+  const {OESelectedEvent } = state
   const handleEditClick = async () => {
-     // write ticket query
-     try {
-    //  const { data } = await addTicket({ 
-    //     variables: {
-    //       event: eventData._id,
-    //     },
-    //   });
+    // launch editor
+    try {
+      dispatch({
+        type: EDIT_MODE,
+      });
     } catch (error) {
         console.log(error);
       }
@@ -38,9 +37,9 @@ const EventInfoBlock = () => {
       <p>Access Key: {eventData.accessKey || 'Public'}</p>
       <p>URL: {eventData.url}</p>
       <p>Admission Price: {eventData.admissionPrice}</p>
-      <button onClick={handleEditClick}>Edit Event</button>
+      <button style={{backgroundColor: '#4C6650'}} onClick={handleEditClick}>Edit Event</button>
     </div>
   );
 };
 
-export default EventInfoBlock;
+export default OwnEventInfoBlock;

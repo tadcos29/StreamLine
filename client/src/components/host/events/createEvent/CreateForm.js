@@ -1,38 +1,76 @@
 import React, { useState, useMemo } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_EVENT } from "../../../../utils/mutations";
+import { ADD_EVENT, UPDATE_EVENT } from "../../../../utils/mutations";
 import { QUERY_EVENTS } from "../../../../utils/queries";
 import DatePicker from "react-datepicker";
 import setMinutes from "date-fns/setMinutes";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
+import { useMainContext } from '../../../../utils/GlobalState';
+import { EDIT_MODE } from "../../../../utils/actions";
 
 import "../../../user/user.css";
 
 import Auth from "../../../../utils/auth";
 
-const CreateEventForm = () => {
+const CreateEventForm = (props) => {
+  const [state, dispatch] = useMainContext();
+  const {OESelectedEvent, editMode } = state
+  const { user, mode } = props;
+  let editFeasible=false;
+  if (mode==='edit' && editMode===true && OESelectedEvent) {
+    editFeasible=true;
+  }
   const [addEvent, { error, data }] = useMutation(ADD_EVENT, {
     refetchQueries: [{ query: QUERY_EVENTS }],
   });
-  const [success, setSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    date: "",
-    time: "",
-    privacy: "",
-    accessKey: "",
-    url: "",
-    admissionPrice: "",
+  const [updateEvent, { error:uErr, data:uData }] = useMutation(UPDATE_EVENT, {
+    refetchQueries: [{ query: QUERY_EVENTS }],
   });
+  let stateObj;
+  console.log('selectedevent');
+  console.log(OESelectedEvent);
+  console.log('editmode state');
+  console.log(editMode);
+  console.log('editmode local');
+  console.log(editMode);
+  const [success, setSuccess] = useState(false);
+  if (editFeasible) {
+     stateObj={
+      name: OESelectedEvent.name,
+      description: OESelectedEvent.description,
+      date: OESelectedEvent.streamTime,
+      time: "",
+      privacy: "",
+      accessKey: OESelectedEvent.accessKey,
+      url: OESelectedEvent.url,
+      admissionPrice: OESelectedEvent.admissionPrice,
+    }
 
+  } else {
+     stateObj={
+      name: "",
+      description: "",
+      date: "",
+      time: "",
+      privacy: "",
+      accessKey: "",
+      url: "",
+      admissionPrice: "",
+    }
+  }
+
+  console.log('stateobject');
+  console.log(stateObj);
+  const [formData, setFormData] = useState({stateObj});
   const handleChange = (event) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
   };
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,6 +82,10 @@ const CreateEventForm = () => {
           ? parseFloat(formData.admissionPrice)
           : 0;
       formData.admissionPrice = parsedPrice;
+  
+   // if the mode is to add an event, then:
+   if (!editFeasible) {
+
       const { data } = await addEvent({
         variables: formData,
       });
@@ -51,30 +93,51 @@ const CreateEventForm = () => {
       if (data && data.addEvent) {
         setSuccess(true);
       }
+
+    } else {
+      console.log('ineditupdateblock');
+    // if the mode is to edit an event, then:
+    const { data } = await updateEvent({
+      variables: {...formData, _id: OESelectedEvent._id}
+    });
+    console.log(data);
+    if (data && data.updateEvent) {
+      setSuccess(true);
+      dispatch({
+        type: EDIT_MODE,
+      });
+
+    }
+
+
+    }
+
     } catch (error) {
       console.log(error);
     }
-    setFormData({
-      name: "",
-      description: "",
-      date: "",
-      time: "",
-      privacy: "",
-      accessKey: "",
-      url: "",
-      admissionPrice: "",
-    });
+    // setFormData({
+    //   name: "",
+    //   description: "",
+    //   date: "",
+    //   time: "",
+    //   privacy: "",
+    //   accessKey: "",
+    //   url: "",
+    //   admissionPrice: "",
+    // });
   };
-
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 16)
   );
 
+    if (mode==='edit' && !editFeasible) {
+      return null;
+    }
   return (
     <>
       <div class="form text-sky-800">
         <form onSubmit={handleSubmit}>
-          <legend class="section_title">Create Event</legend>
+          <legend class="section_title">{(mode==='edit') ? 'Update' : 'Create'} Event</legend>
 
           <div className="inline-form">
             <div className="inline-form-element">
@@ -169,11 +232,13 @@ const CreateEventForm = () => {
             />
           </div>
 
+
           <button className="flex  mx-auto bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold mt-10 py-2 px-4 mb-10 rounded-md">
-            Create Event
+            {(mode==='edit') ? 'Update' : 'Create'} Event
+
           </button>
         </form>
-        {success && <div>Successfully created event!</div>}
+        {success && <div>Successfully {(mode==='edit') ? 'updated' : 'created'} event!</div>}
       </div>
     </>
   );

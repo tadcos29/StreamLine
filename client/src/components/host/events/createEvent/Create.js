@@ -33,7 +33,7 @@ const CreateEvent = () => {
             <TopNav user={user} />
           </div>
           <div className="body-container ">
-            <CreateEventForm user={user} />
+            <CreateEventForm user={user} mode={'create'} />
           </div>
         </div>
       </div>
