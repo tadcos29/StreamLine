@@ -61,7 +61,7 @@ const EventBody = () => {
         Currently, these are your only upcoming events that you're hosting
       </h2>
       <div style={{ display: "flex", flexDirection: "row", height: "60vh" }}>
-        <div className="dash-section mr-3 w-3/5">
+        <div className="dash-section   w-full md:w-3/5">
           <div style={{ overflowY: "scroll" }}>
             <ul>
               {myEventList.map((myEvent) => (

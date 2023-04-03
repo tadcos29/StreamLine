@@ -49,21 +49,19 @@ const UpcomingEvents = () => {
     eventList = evData.events;
     console.log("got an event list");
     console.log(eventList);
-    reversed = [...eventList].reverse();        // myEventList=eventList.filter(event => event.creator._id === user._id);
+    reversed = [...eventList].reverse(); // myEventList=eventList.filter(event => event.creator._id === user._id);
   }
   return (
     <div className="upcoming-events">
-      <h2 className="upcoming-events-title">What's On</h2>
-      <h2 className="dash-bio">View all future events hosted on StreamLine</h2>
       <div className="event-ticket">
         <ul>
-        {reversed.map((myEvent) => (
-          <EventCardHome
-            key={`${myEvent._id}${myEvent.streamTime}`}
-            eventData={myEvent}
-            handleClick={handleEventClick}
-          />
-        ))}
+          {reversed.map((myEvent) => (
+            <EventCardHome
+              key={`${myEvent._id}${myEvent.streamTime}`}
+              eventData={myEvent}
+              handleClick={handleEventClick}
+            />
+          ))}
         </ul>
       </div>
     </div>

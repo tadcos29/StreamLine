@@ -29,6 +29,13 @@ width: 100%}
    
 }
 
+@media only screen and (max-width: 600px) {
+    .body-container {
+        height: 100vh;
+        width: 100vw!important;
+    }
+  }
+
 .ticket-container {
     background-color:rgba(246,246,246,0.9); 
 }
@@ -132,8 +139,9 @@ font-size: 1.1rem;
 }
 /*============================ CARDS ==============================*/
 .eventcard { 
-    border-radius: 5px;
     background-color: var(--dark);
+    border-color: var(--accent);
+    border-left-width: 15px;
 }
 
 
@@ -159,6 +167,12 @@ font-size: 1.1rem;
     color: var(--mid);
 }
 
+.stream-title {
+    font-family: 'Red Rose', cursive;
+    padding-top: 20px;
+    font-size: 2rem;
+    color: var(--mid);
+}
 
 .dash-bio {
     font-family: 'Mulish', sans-serif;
@@ -167,15 +181,49 @@ font-size: 1.1rem;
     padding-bottom: 20px;
 }
 
+.detail-label {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1rem;
+    color: var(-light);
+    padding-top: 10px;
+}
+
+.profile-label {
+    font-family: 'Questrial', 'sans-serif';
+    font-size: 1.2rem;
+    color: grey;
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
 .dashboard {
     padding-left: 50px;
-    padding-right: 50px;
+   
 }
 
 .event-container{
     padding-left: 50px;
     padding-right: 50px;
 }
+
+@media only screen and (max-width: 600px) {
+    .dashboard {
+        width: 100vw!important;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .event-container {
+        width: 100vw!important;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+  }
+
+
 
 .dash-section {
      height: 100%;
@@ -197,8 +245,17 @@ font-size: 1.1rem;
 
 .ticketname {
     font-size: 2rem;
+    font-family: 'Questrial', 'sans-serif';
     color: var(--light);
 
+}
+.ticket-bio {
+    font-family: 'Mulish', sans-serif;
+}
+
+.ticket-title {
+    font-family: 'Questrial', 'sans-serif';
+    font-weight: 500;
 }
 
 /*============================ FORM ==============================*/
@@ -212,7 +269,7 @@ min-width: 350px;
 margin: 0 auto 100px;
 padding: 45px;
 text-align: center;
-    background: linear-gradient(-45deg, #2177a0, #57a57d);
+    background: linear-gradient(-45deg, #1c1d1b, #1b1c1b);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 5px;
     margin-top:10px;
@@ -234,10 +291,12 @@ textarea {
     box-shadow: inset 0px 1px 1px rgba(0,0,0,0.2), 0px 1px 1px rgba(255,255,255,0.3);
     border-radius: 3px;
     width: 100%;
-    min-width:30%;
+    min-width:50%;
+    height: 60px;
     display: block;
-    padding: 15px;
     margin-bottom: 15px;
+    padding-left:5px;
+    padding-right:5px;
     border: 1px solid rgba(0,0,0,0.2);
     background: rgba(0,0,0,0.2);
     transition: all 0.2s ease;
@@ -253,10 +312,21 @@ input[type="radio"],
 input[type="checkbox"]{
     width: auto;
     display: inline;
+    height: auto!important;
     box-shadow: none;
 }
 
 label {
+    font-family: 'Questrial', 'sans-serif';
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: left;
+}
+.avatar-label {
     font-family: 'Questrial', 'sans-serif';
     border-bottom: 1px solid rgba(255,255,255,0.2);
     display: block;
@@ -299,3 +369,52 @@ label {
       width: 30%;
   
     }
+    @media only screen and (max-width: 600px) {
+        .inline-form-element {
+           
+              width: 100%;
+          
+            }
+           
+            .inline-form-element2 {
+           
+                width: 100%;
+            
+              }
+      }
+    
+.avatar-ticket {
+    max-width: 100px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 20px;
+   
+}
+
+.ticketcard {
+    border-color: var(--dark);
+    border-left-width: 15px;
+    color: var(--dark);
+}
+
+.streamlink {
+    color: var(--accentlight);
+}
+
+.avatar-profile {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 20px;
+    border-radius: 100%;
+   
+}
+
+.profile-name {
+    font-family: 'Mulish', sans-serif;
+    font-size: 2rem;
+    color: var(--mid);
+}
+
+/*============================ login ==============================*/

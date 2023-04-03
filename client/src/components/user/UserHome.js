@@ -23,7 +23,7 @@ const UserHome = () => {
 
   return (
     <div className="background">
-      <div className="home-contain h-screen mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
+      <div className="home-contain h-100vh mx-auto my-0 bg-main-bg md:flex flex-row text-main-text font-main">
         <div>
           <Header user={user} />
         </div>
