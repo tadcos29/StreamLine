@@ -21,8 +21,8 @@ const TopBar = () => {
 
   return (
     <div>
-      <div>
-        <header className="topbar flex md:flex-row justify-between ">
+      <div className="hidden md:flex">
+        <header className="topbar flex md:flex-row justify-between w-full ">
           <div className="my-auto">
             <button class="bg-lime-400 hover:bg-lime-300 text-black font-bold ml-5 my-auto py-2 px-4 rounded-md">
               <Link to="/CreateEvent">Create Event</Link>
@@ -32,13 +32,22 @@ const TopBar = () => {
             <FontAwesomeIcon className="stream-icon" icon={faCircleDot} />
             <Link to="/Livestream">Live Now</Link>
           </div>
-          <h2 className="greeting align-middle mr-5 my-auto">
-            {user.firstName} {user.lastName}
+          <div className="d-flex">
+            <h2 className="greeting align-middle inline-block w-50 mr-5 my-auto">
+              {user.firstName} {user.lastName}
+            </h2>
             <ShowAvatar
               user={user}
-              style={{ maxWidth: "100%", objectFit: "contain" }}
+              style={{
+                display: "inline-block",
+                width: "50px",
+                height: "50px",
+                objectFit: "cover",
+                borderRadius: "100%",
+                marginRight: "10px",
+              }}
             />
-          </h2>
+          </div>
         </header>
       </div>
     </div>

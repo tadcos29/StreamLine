@@ -45,10 +45,8 @@ function SignUp(props) {
   };
 
   return (
-    <div className="container my-1">
-      <button onClick={toggleInUp}>Log In</button>
-
-      <h2>Signup</h2>
+    <div>
+      <h2 className="logtitle">Signup</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="firstName">First Name:</label>
@@ -91,9 +89,17 @@ function SignUp(props) {
           />
         </div>
         <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="flex  mx-auto bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold mt-10 py-2 px-4 mb-10 rounded-md"
+          >
+            Submit
+          </button>
         </div>
       </form>
+      <button className="logname hover:text-lime-400" onClick={toggleInUp}>
+        Already have an account? Log In
+      </button>
     </div>
   );
 }

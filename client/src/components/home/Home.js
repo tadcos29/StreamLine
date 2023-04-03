@@ -7,6 +7,8 @@ import SignUp from "../../components/home/signUp/SignUp";
 import { QUERY_USER } from "../../utils/queries";
 import { useMainContext } from "../../utils/GlobalState";
 import UserHome from "../user/UserHome";
+import image from "../../assets/images/video2.png";
+import "./home.css";
 
 const Home = () => {
   const [state, dispatch] = useMainContext();
@@ -50,7 +52,6 @@ const Home = () => {
     } else {
       return (
         <>
-          <h1>Nope, You Are Not Logged In</h1>
           {/* If toggledy is true, login, if false, sign up */}
           {toggledy ? <Login /> : <SignUp />}
         </>
@@ -59,9 +60,13 @@ const Home = () => {
   }
 
   return (
-    <div className="container">
-      <h1>Welcome to Ticket Hosting</h1>
-      {loginStatus(user)}
+    <div className="home">
+      <div className="grid">
+        <img src={image} className="w-30 d-flex mx-auto mt-2" />
+        <h1 className="title text-center"> STREAMLINE</h1>
+
+        <div className="main">{loginStatus(user)}</div>
+      </div>
     </div>
   );
 };

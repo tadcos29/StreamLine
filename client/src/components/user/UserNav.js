@@ -21,7 +21,7 @@ var styles = {
     top: "20px",
   },
   bmBurgerBars: {
-    background: "#fff",
+    background: "#000",
   },
   bmBurgerBarsHover: {
     background: "#a90000",
@@ -38,7 +38,7 @@ var styles = {
     height: "100%",
   },
   bmMenu: {
-    background: "#111",
+    background: "#000",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
   },
@@ -135,51 +135,85 @@ function UserNav({ view, setView }) {
           isOpen={menuOpen}
           onStateChange={({ menuOpen }) => handleStateChange(menuOpen)}
         >
-          <div className="h-1/2 flex flex-col justify-between w-full">
-            <div
-              className="mobile-link"
-              onClick={() => {
-                handleMobileNav("events");
-              }}
-            >
-              <Link to="/Events" className="nav-item">
-                What`s On
-              </Link>
-            </div>
+          <div
+            className="navlink"
+            onClick={() => {
+              handleMobileNav("userhome");
+            }}
+          >
+            <Link to="/UserHome" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faHouse} />
+              Home
+            </Link>
+          </div>
+          <div
+            className="navlink  "
+            onClick={() => {
+              handleMobileNav("events");
+            }}
+          >
+            <Link to="/Events" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faCalendarDays} />
+              Your Events
+            </Link>
+          </div>
 
-            <div
-              className="mobile-link"
-              onClick={() => {
-                handleMobileNav("tickets");
-              }}
-            >
-              icon={<HomeIcon />}
-              <Link to="/Tickets" className="nav-item">
-                Your Tickets
-              </Link>
-            </div>
+          <div
+            className="navlink"
+            onClick={() => {
+              handleMobileNav("tickets");
+            }}
+          >
+            <Link to="/Tickets" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faTicket} />
+              Your Tickets
+            </Link>
+          </div>
 
-            <div
-              className="mobile-link"
-              onClick={() => {
-                handleMobileNav("profile");
-              }}
-            >
-              <Link to="/Profile" className="nav-item">
-                Profile
-              </Link>
-            </div>
-            <div
-              className="mobile-link"
-              onClick={() => {
-                handleMobileNav("livestream");
-              }}
-            >
-              <Link to="/Livestream" className="nav-item">
-                Live Now
-              </Link>
-            </div>
-            {/* Resume Download */}
+          <div
+            className="navlink  "
+            onClick={() => {
+              handleMobileNav("profile");
+            }}
+          >
+            <Link to="/Profile" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faAddressBook} />
+              Profile
+            </Link>
+          </div>
+          <div
+            className="navlink"
+            onClick={() => {
+              handleMobileNav("livestream");
+            }}
+          >
+            <Link to="/Livestream" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faTicket} />
+              Livestream
+            </Link>
+          </div>
+          <div
+            className="navlink"
+            onClick={() => {
+              handleMobileNav("createEvent");
+            }}
+          >
+            <Link to="/CreateEvent" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faTicket} />
+              CreateEvent
+            </Link>
+          </div>
+
+          <div
+            className="navlink"
+            onClick={() => {
+              handleMobileNav("logout");
+            }}
+          >
+            <Link to="/Logout" className="nav-item">
+              <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faTicket} />
+              Logout
+            </Link>
           </div>
         </Menu>
       </nav>
