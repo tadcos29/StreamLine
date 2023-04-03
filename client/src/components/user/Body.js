@@ -11,10 +11,10 @@ const Body = ({ user }) => {
     <div className="dashboard">
       <div className="dash-greeting">Hi, {user.firstName}</div>
       <div className="dash-bio">
-        Checkout upcoming events and keep track of events you've RSVP'd to
+        Buy tickets to upcoming events. Enter access codes for private events.
       </div>
       <div style={{ display: "flex", flexDirection: "row", height: "50vh" }}>
-        <div className="dash-section mr-3 w-2/5">
+        <div className="dash-section mr-3 w-1/2">
           <UpcomingEvents />
         </div>
 

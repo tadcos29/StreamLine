@@ -97,7 +97,7 @@ function UserNav({ view, setView }) {
         >
           <Link to="/Events" className="nav-item">
             <FontAwesomeIcon className="mr-5 w-5 h-5" icon={faCalendarDays} />
-            What's On
+            Your Events
           </Link>
         </div>
 

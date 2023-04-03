@@ -1,10 +1,9 @@
 :root {
-  --dark: #1A1A2E;
-  --mid: #16213E;
-  --mid2: #0F3460;
-  --light: #F6F6F6;
-  --accent: #E94560;
-  --red: #e75b5b; 
+  --dark: rgb(25, 26, 25);
+  --mid: rgb(32, 36, 32);
+  --light: #fefffe;
+  --accent: #b0e945;
+  --accentlight: #c8f653; 
 }
 .container {
   max-width: 100%;

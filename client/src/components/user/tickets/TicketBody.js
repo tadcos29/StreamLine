@@ -10,21 +10,25 @@ import { useMainContext } from "../../../utils/GlobalState";
 import Ticket from "./partials/Ticket";
 
 const TicketBody = ({ user }) => {
-  
-
   return (
-    <div>
-      <h2>This is the Tickets Body component, hosted by Tickets.js</h2>
+    <div className="event-container">
+      <h2 className="dash-greeting">Your Tickets</h2>
+      <p className="dash-bio">
+        {" "}
+        View all your tickets for upcoming events you've RSVP'd to
+      </p>
       {user.tickets ? (
         <>
           <h1>There might be tickets</h1>
-          {(user.tickets.length) ? (
+          {user.tickets.length ? (
             <ul>
-            {user.tickets.map((ticket) => (
-              <Ticket key={ticket._id} ticket={ticket} />
-            ))}
-          </ul>
-            ): ('no tickets')}
+              {user.tickets.map((ticket) => (
+                <Ticket key={ticket._id} ticket={ticket} />
+              ))}
+            </ul>
+          ) : (
+            "no tickets"
+          )}
         </>
       ) : (
         <>

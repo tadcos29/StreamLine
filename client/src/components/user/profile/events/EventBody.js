@@ -18,13 +18,12 @@ const EventBody = () => {
 
   const handleEventClick = (eventData) => {
     if (eventData) {
-    dispatch({
-      type: SET_OE_EVENT,
-      payload:eventData
-
-    });
-  }
-  }
+      dispatch({
+        type: SET_OE_EVENT,
+        payload: eventData,
+      });
+    }
+  };
 
   const {
     loading: evLoading,
@@ -49,21 +48,32 @@ const EventBody = () => {
     console.log("got an event list");
     console.log(eventList);
 
-    myEventList=eventList.filter(event => event.creator._id === user._id);
+    myEventList = eventList.filter((event) => event.creator._id === user._id);
   }
   return (
     <div className="event-container">
-      <h2>
-        This is the Events Body
-        <p />
+      <h2 className="dash-greeting">Events You're Hosting</h2>
+      <p className="dash-bio">
+        Monitor your events. Start and Stop your streams here.{" "}
+      </p>
+      <h2 className="upcoming-events-title">Upcoming Host Events:</h2>
+      <h2 className="dash-bio">
+        Currently, these are your only upcoming events that you're hosting
       </h2>
-      <h2>This list will filter the user's own events</h2>
-      <div style={{ overflowY: "scroll", height: "250px" }}>
-        <ul>
-          {myEventList.map((myEvent) => (
-            <EventCard key={myEvent._id} eventData={myEvent} handleClick={handleEventClick}  />
-          ))}
-        </ul>
+      <div style={{ display: "flex", flexDirection: "row", height: "60vh" }}>
+        <div className="dash-section mr-3 w-3/5">
+          <div style={{ overflowY: "scroll" }}>
+            <ul>
+              {myEventList.map((myEvent) => (
+                <EventCard
+                  key={myEvent._id}
+                  eventData={myEvent}
+                  handleClick={handleEventClick}
+                />
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
