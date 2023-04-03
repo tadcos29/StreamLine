@@ -52,8 +52,8 @@ const UpcomingEvents = () => {
   }
   return (
     <div className="upcoming-events">
-      <h2 className="upcoming-events-title">Upcoming Events</h2>
-      <h2 className="dash-bio">This is all of the events</h2>
+      <h2 className="upcoming-events-title">What's On</h2>
+      <h2 className="dash-bio">View all future events hosted on StreamLine</h2>
       <div className="event-ticket">
         <ul>
           {eventList.map((myEvent) => (

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import Auth from '../../../utils/auth';
-import { ADD_USER } from '../../../utils/mutations';
-import { useMainContext } from '../../../utils/GlobalState'
-import { TOGGLE_LOG } from '../../../utils/actions';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import Auth from "../../../utils/auth";
+import { ADD_USER } from "../../../utils/mutations";
+import { useMainContext } from "../../../utils/GlobalState";
+import { TOGGLE_LOG } from "../../../utils/actions";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import "../home.css";
 
 function SignUp(props) {
-
-    const [state, dispatch] = useMainContext();
-    const { toggledy } = state;
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [state, dispatch] = useMainContext();
+  const { toggledy } = state;
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
@@ -21,8 +22,8 @@ function SignUp(props) {
         password: formState.password,
         firstName: formState.firstName,
         lastName: formState.lastName,
-        tickets:[],
-        created:[]
+        tickets: [],
+        created: [],
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -39,13 +40,13 @@ function SignUp(props) {
 
   const toggleInUp = () => {
     dispatch({
-        type: TOGGLE_LOG,
-      });
-  }
+      type: TOGGLE_LOG,
+    });
+  };
 
   return (
     <div className="container my-1">
-    <button onClick={toggleInUp}>Log In</button>
+      <button onClick={toggleInUp}>Log In</button>
 
       <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
