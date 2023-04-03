@@ -62,8 +62,8 @@ const Player = ({ user }) => {
           frameBorder="0"
           allowFullScreen="true"
           scrolling="no"
-          height="378"
-          width="620"
+          height="756"
+          width="1240"
           background-color="rgba(0, 0, 0, .5)"
         ></iframe>
         {/* <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '24px' }}>
