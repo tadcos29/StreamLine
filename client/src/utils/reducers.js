@@ -35,7 +35,7 @@ export const reducer = (state, action) => {
         toggledy: newToggle
           };
           case EDIT_MODE:
-            if (!state.editMode) {state.editMode=true}
+            if (!state.editMode) {state.editMode=false}
             console.log('inedit');
             let newEMState=(!state.editMode);
             console.log('inedit'+state.editMode);

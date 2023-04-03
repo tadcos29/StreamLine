@@ -11,8 +11,8 @@ const OwnEventInfoBlock = () => {
   const [state, dispatch] = useMainContext();
   const {OESelectedEvent } = state
   const handleEditClick = async () => {
-     // write ticket query
-     try {
+    // launch editor
+    try {
       dispatch({
         type: EDIT_MODE,
       });

@@ -185,6 +185,19 @@ const resolvers = {
     },
 
 
+    updateEvent: async (parent, args, context) => {
+      console.log('ineditevent');
+      console.log(args);
+      if (context.user) {
+        const newEvent = await Event.findByIdAndUpdate(args._id,args,{new:true});
+        return newEvent;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+
+
 // updateUser
 
     updateUser: async (parent, args, context) => {

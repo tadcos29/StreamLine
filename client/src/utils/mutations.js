@@ -140,6 +140,42 @@ export const ADD_EVENT = gql`
 `;
 
 
+export const UPDATE_EVENT = gql`
+ mutation updateEvent(
+  $_id:ID
+  $name: String!
+  $description: String
+  $accessKey: String
+  $url: String
+  $admissionPrice: Float
+) {
+  updateEvent(
+    _id:$_id
+    name: $name
+    description: $description
+    accessKey: $accessKey
+    url: $url
+    admissionPrice: $admissionPrice
+  ) {
+    _id
+    name
+    description
+    creator {
+      _id
+      firstName
+      lastName
+      email
+    }
+    accessKey
+    url
+    isLive
+    isPast
+    admissionPrice
+  }
+}
+`;
+
+
 
 
 export const ADD_USER = gql`

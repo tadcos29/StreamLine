@@ -58,7 +58,7 @@ const EventBody = () => {
       </p>
       <h2 className="upcoming-events-title">Upcoming Host Events:</h2>
       <h2 className="dash-bio">
-        Currently, these are your only upcoming events that you're hosting
+        Currently, these are your only hosted events.
       </h2>
       <div style={{ display: "flex", flexDirection: "row", height: "60vh" }}>
         <div className="dash-section mr-3 w-3/5">
