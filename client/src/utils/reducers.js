@@ -9,6 +9,7 @@ import {
   // CLEAR_CART,
   // TOGGLE_CART,
   TOGGLE_LOG,
+  EDIT_MODE,
   SET_UE_EVENT,
   SET_OE_EVENT,
   SET_CURRENT_PURCHASE,
@@ -33,6 +34,16 @@ export const reducer = (state, action) => {
         ...state,
         toggledy: newToggle
           };
+          case EDIT_MODE:
+            if (!state.editMode) {state.editMode=true}
+            console.log('inedit');
+            let newEMState=(!state.editMode);
+            console.log('inedit'+state.editMode);
+            return {
+              ...state,
+              editMode: newEMState
+                };
+          
     
     case SET_UE_EVENT: 
     if (!state.UESelectedEvent) {state.UESelectedEvent=false}
