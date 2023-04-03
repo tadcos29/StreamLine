@@ -60,7 +60,7 @@ const Player = ({ user }) => {
 
         <div className="twitch-player-overlay"></div>
         <iframe
-          src={`https://player.twitch.tv/?channel=${twitchid}&parent=localhost&autoplay=true&muted=false`}
+          src={`https://player.twitch.tv/?channel=${twitchid}&parent=livestream-tickets.herokuapp.com&autoplay=true&muted=false`}
           frameBorder="0"
           allowFullScreen="true"
           scrolling="no"
