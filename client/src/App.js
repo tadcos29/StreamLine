@@ -14,6 +14,7 @@ import Home from "./components/home/Home";
 import NoMatch from "./components/home/NoMatch";
 import Login from "./components/home/Login/login";
 import Signup from "./components/home/signUp/SignUp";
+import Success from "./components/user/tickets/Success"
 // import Nav from './components/Nav';
 import { MainProvider } from "./utils/GlobalState";
 import UserHome from "./components/user/UserHome";
@@ -55,7 +56,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/success" element={<Tickets />} />
+              <Route path="/success" element={<Success />} />
               <Route path="/failure" element={<UserHome />} />
               <Route path="/UserHome" element={<UserHome />} />
               <Route path="/CreateEvent" element={<CreateEvent />} />

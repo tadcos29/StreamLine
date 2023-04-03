@@ -42,6 +42,11 @@ const userSchema = new Schema({
     },
   tickets: [Ticket.schema],
   created: [Event.schema],
+  currentPurchase: {
+    type: Schema.Types.ObjectId,
+    ref: 'Event',
+    required: false,
+  }
   
 },{
   toJSON: {

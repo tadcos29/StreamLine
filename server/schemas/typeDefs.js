@@ -47,6 +47,7 @@ type Checkout {
     accessKeys:[String]
     isHost: Boolean
     avatar:String
+    currentPurchase:Event
   }
 
  
@@ -62,12 +63,15 @@ type Checkout {
     events: [Event]
     event (_id: ID!): Event
     checkout(event: ID!): Checkout
+    getCurrentPurchase: Event
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, ): Auth
     addTicket(event:ID): Ticket
     toggleEvent(_id:ID!, isLive:Boolean): Event
+
+    setCurrentPurchase(event:ID):User
 
     addEvent(
     name: String!

@@ -22,7 +22,14 @@ const resolvers = {
 
 
 
+    getCurrentPurchase: async (parent, args, context) => {
+      if (context.user) {
+        const foundUser = await User.findById(context.user._id);
+        return foundUser.currentPurchase;
+      }
 
+      throw new AuthenticationError('Not logged in');
+    },
 
 // find all events
 
@@ -118,6 +125,18 @@ const resolvers = {
 
       return { token, user };
     },
+
+    setCurrentPurchase: async (parent, {_id}, context) => {
+      if (context.user) {
+        foundEvent=await Event.findById(_id);
+        modifiedUser=await User.findByIdAndUpdate(context.user._id, { $push: { currentPurchase: foundEvent } });
+        return modifiedUser;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+
 
     toggleEvent: async(parent, {_id, isLive}, context) => {
       if (context.user) {

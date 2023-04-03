@@ -24,6 +24,13 @@ export const QUERY_EVENT = gql`
   }
 `;
 
+export const GET_PURCHASE = gql`
+  query getCurrentPurchase {
+    event 
+  }
+`;
+
+
 export const QUERY_EVENTS = gql`
   {
     events {
