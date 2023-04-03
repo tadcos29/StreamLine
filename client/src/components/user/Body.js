@@ -15,15 +15,24 @@ const Body = ({ user }) => {
         Buy tickets to upcoming events. Enter access codes for private events.
       </div>
       <div>
+      <div>
       <AccessCode user={user}/>
       </div>
-      <div style={{ display: "flex", flexDirection: "row", height: "50vh" }}>
-        <div className="dash-section mr-3 w-1/2">
-          <UpcomingEvents />
-        </div>
+   
+        <h2 className="upcoming-events-title">What's On</h2>
+        <h2 className="dash-bio">
+          View all future events hosted on StreamLine
+        </h2>
+        <div style={{ display: "flex", flexDirection: "row", height: "50vh" }}>
+          <div className="grid grid-cols-5">
+            <div className="dash-section mr-0 md:mr-3 col-span-5 md:col-span-3">
+              <UpcomingEvents />
+            </div>
 
-        <div className="dash-section ml-3 w-2/5">
-          <EventInfoBlock />
+            <div className="dash-section ml-0 md:ml-3 col-span-5 md:col-span-2 sticky top-0">
+              <EventInfoBlock />
+            </div>
+          </div>
         </div>
       </div>
     </div>

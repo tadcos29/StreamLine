@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-import "../../../assets/fonts/ravenda/stream.css"
+import "../../../assets/fonts/ravenda/stream.css";
 
 const socket = io.connect("http://localhost:3001");
 
@@ -42,9 +42,9 @@ const Player = ({ user }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const list = document.querySelector('ul');
+  const list = document.querySelector("ul");
 
-  list.querySelectorAll('li').forEach(li => {
+  list.querySelectorAll("li").forEach((li) => {
     if (!li.classList.contains(twitchid)) {
       li.style.display = "none";
     }
@@ -52,11 +52,9 @@ const Player = ({ user }) => {
 
   return (
     <div>
-      <h2>Player</h2>
-
-      <div className="twitch-player-container">
-      <div className="twitch-player-overlay1"></div>
-      <div className="twitch-player-overlay2"></div>
+      <div className="twitch-player-container w-2/3">
+        <div className="twitch-player-overlay1"></div>
+        <div className="twitch-player-overlay2"></div>
 
         <div className="twitch-player-overlay"></div>
         <iframe
@@ -66,21 +64,26 @@ const Player = ({ user }) => {
           scrolling="no"
           height="378"
           width="620"
-          background-color= "rgba(0, 0, 0, .5)"
+          background-color="rgba(0, 0, 0, .5)"
         ></iframe>
-          {/* <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '24px' }}>
+        {/* <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '24px' }}>
             Text in the middle
           </div> */}
       </div>
-
-      <div className="App">
+      <h2 className="profile-label">Leave comments as {user.firstName}</h2>
+      <div className="App w-2/3">
         <input
           placeholder="Message..."
           onChange={(event) => {
             setMessage(event.target.value);
           }}
         />
-        <button onClick={() => { console.log("hello"); sendMessage(); }}>
+        <button
+          onClick={() => {
+            console.log("hello");
+            sendMessage();
+          }}
+        >
           Send Message
         </button>
         <h1> Message:</h1>

@@ -62,35 +62,49 @@ const EventCard = ({ eventData, handleClick }) => {
   let formattedCurrency = dollarFormat(admissionPrice);
   return (
     <div
-      className="eventcard text-lime-50"
+      className="eventcard text-lime-50 pr-0 rounded-lg"
       style={{
-        padding: "40px",
+        marginBottom: "20px",
+        paddingTop: "40px",
+        paddingRight: "40px",
+        paddingBottom: "40px",
+        paddingLeft: "30px",
         display: "flex",
         flexDirection: "row",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <ShowAvatar user={creator} style={{}} />
-      <div className="w-1/2">
-        <h3 className="ticketname">{name}</h3>
-        <p className="my-2">{description}</p>
-        <p>
-          Created by {creator.firstName} {creator.lastName}
-        </p>
-      </div>
-      <div className="w-1/2 text-right">
-        <p> {statusText}</p>
-        <p>{accessText}</p>
-        <p>{url}</p>
-        <p>{formattedCurrency}</p>
-        <button
-          class="bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
-          onClick={handleIndividualClick}
-        >
-          View Details
-        </button>
-        {!isLive ? (
+
+      <div className="w-full grid grid-cols-6">
+        <div className="avatar-ticket flex my-auto col-span-1">
+          <ShowAvatar user={creator} style={{ borderRadius: "10px" }} />
+        </div>
+
+        <div className="col-span-2">
+          <h3 className="ticketname">{name}</h3>
+          <p className="ticket-bio my-2">{description}</p>
+          <p className="ticket-bio">
+            Created by {creator.firstName} {creator.lastName}
+          </p>
+        </div>
+
+        <div className=" col-span-3 text-right">
+          <div className="ticket-bio">
+            <p> {statusText}</p>
+            <p>{accessText}</p>
+            <p>{url}</p>
+            <p>{formattedCurrency}</p>
+          </div>
+          <div className=" text-right">
+            <button
+              class="bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold ml-5 mt-10 py-2 px-4  rounded-md"
+              onClick={handleIndividualClick}
+            >
+              View Details
+            </button>
+
+            {!isLive ? (
           <button
             class="bg-green-500 hover:bg-lime-400 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
             onClick={handleToggle}
@@ -105,9 +119,12 @@ const EventCard = ({ eventData, handleClick }) => {
             Stop Live Stream
           </button>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default EventCard;
+

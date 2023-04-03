@@ -39,10 +39,8 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <button onClick={toggleInUp}>Sign Up</button>
-
-      <h2>Login</h2>
+    <div>
+      <h2 className="logtitle">Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
@@ -70,9 +68,17 @@ function Login(props) {
           </div>
         ) : null}
         <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="flex  mx-auto bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold mt-10 py-2 px-4 mb-10 rounded-md"
+          >
+            Submit
+          </button>
         </div>
       </form>
+      <button className="logname hover:text-lime-400" onClick={toggleInUp}>
+        Not a member yet? Sign Up
+      </button>
     </div>
   );
 }

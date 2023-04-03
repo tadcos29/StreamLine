@@ -232,8 +232,10 @@ const CreateEventForm = (props) => {
             />
           </div>
 
-          <button class="bg-sky-700 hover:bg-sky-900 mt-10 text-white font-bold py-2 px-4 rounded-md">
-          {(mode==='edit') ? 'Update' : 'Create'} Event
+
+          <button className="flex  mx-auto bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold mt-10 py-2 px-4 mb-10 rounded-md">
+            {(mode==='edit') ? 'Update' : 'Create'} Event
+
           </button>
         </form>
         {success && <div>Successfully {(mode==='edit') ? 'updated' : 'created'} event!</div>}

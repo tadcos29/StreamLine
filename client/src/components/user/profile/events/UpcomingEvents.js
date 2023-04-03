@@ -60,11 +60,10 @@ const UpcomingEvents = () => {
       return true;
     });    
     // myEventList=eventList.filter(event => event.creator._id === user._id);
+
   }
   return (
     <div className="upcoming-events">
-      <h2 className="upcoming-events-title">What's On</h2>
-      <h2 className="dash-bio">View all future events hosted on StreamLine</h2>
       <div className="event-ticket">
         <ul>
         {secured.map((myEvent) => (
@@ -74,6 +73,7 @@ const UpcomingEvents = () => {
             handleClick={handleEventClick}
           />
         ))}
+
         </ul>
       </div>
     </div>
