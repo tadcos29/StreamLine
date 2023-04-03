@@ -33,6 +33,7 @@ const UpcomingEvents = () => {
   } = useQuery(QUERY_EVENTS);
   let user;
   let eventList;
+  let reversed;
   let myEventList;
   if (loading || evLoading) {
     return <h1>Loading Events...</h1>;
@@ -48,7 +49,7 @@ const UpcomingEvents = () => {
     eventList = evData.events;
     console.log("got an event list");
     console.log(eventList);
-    // myEventList=eventList.filter(event => event.creator._id === user._id);
+    reversed = [...eventList].reverse();        // myEventList=eventList.filter(event => event.creator._id === user._id);
   }
   return (
     <div className="upcoming-events">
@@ -56,15 +57,13 @@ const UpcomingEvents = () => {
       <h2 className="dash-bio">View all future events hosted on StreamLine</h2>
       <div className="event-ticket">
         <ul>
-        {eventList
-          .sort((a, b) => new Date(b.created) - new Date(a.created))
-          .map((myEvent) => (
-            <EventCardHome
-              key={`${myEvent._id}${myEvent.created}`}
-              eventData={myEvent}
-              handleClick={handleEventClick}
-            />
-          ))}
+        {reversed.map((myEvent) => (
+          <EventCardHome
+            key={`${myEvent._id}${myEvent.streamTime}`}
+            eventData={myEvent}
+            handleClick={handleEventClick}
+          />
+        ))}
         </ul>
       </div>
     </div>
