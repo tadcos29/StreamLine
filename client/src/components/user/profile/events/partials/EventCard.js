@@ -127,3 +127,4 @@ const EventCard = ({ eventData, handleClick }) => {
 };
 
 export default EventCard;
+
