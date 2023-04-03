@@ -28,12 +28,7 @@ const CreateEventForm = (props) => {
     refetchQueries: [{ query: QUERY_EVENTS }],
   });
   let stateObj;
-  console.log('selectedevent');
-  console.log(OESelectedEvent);
-  console.log('editmode state');
-  console.log(editMode);
-  console.log('editmode local');
-  console.log(editMode);
+
   const [success, setSuccess] = useState(false);
   if (editFeasible) {
      stateObj={
@@ -75,8 +70,7 @@ const CreateEventForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("informdata");
-      console.log(formData);
+     
       const parsedPrice =
         formData.admissionPrice !== ""
           ? parseFloat(formData.admissionPrice)

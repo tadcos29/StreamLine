@@ -12,11 +12,9 @@ const Ticket = ({ ticket }) => {
   // if (loading) return <p>Loading Ticket...</p>;
   // if (error) return <p>Error: {error.message}</p>;
 
-  console.log(ticket);
 
   const handleLinkClick = (event) => {
     const linkUrl = event.target.getAttribute("data-url");
-    console.log(linkUrl);
     localStorage.setItem("linkurl", linkUrl);
   };
 

@@ -30,10 +30,7 @@ function Avatar({ user }) {
     const formData = new FormData();
 
     formData.append("file", selectedFile);
-    // let stringified=JSON.stringify(selectedFile);
-    // console.log(selectedFile);
-    // console.log(stringified)
-    // let destringified=JSON.parse(stringified);
+
 
     // Send a POST request to the /upload endpoint with the FormData object as the body
     const response = await fetch("/upload", {

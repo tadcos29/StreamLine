@@ -21,7 +21,6 @@ function AccessCode({ user }) {
       accessKeys: [...user.accessKeys, accessKey],
     };
     console.log("inaccesskeybrowser");
-    console.log(updatedUser);
     try {
       await updateUser({ variables: { accessKeys: updatedUser.accessKeys } });
       setAccessKey("");

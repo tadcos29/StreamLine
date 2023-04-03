@@ -18,9 +18,7 @@ export const reducer = (state, action) => {
   
     case TOGGLE_LOG:
       if (!state.toggledy) {state.toggledy=false}
-      console.log('intoggle');
       let newToggle=(!state.toggledy);
-      console.log('intoggle'+state.toggledy);
       return {
         ...state,
         toggledy: newToggle

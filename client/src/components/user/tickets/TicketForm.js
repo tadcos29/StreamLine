@@ -11,7 +11,6 @@ const TicketForm = () => {
     e.preventDefault();
     try {
 
-        console.log(`name is ${name}, desc is ${description}`)
       await addTicket({
         variables: {
           name:name,
