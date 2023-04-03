@@ -24,7 +24,7 @@ const Tickets = () => {
   if (data) {
     user = data.user;
     console.log("got data in tickets");
-  }
+
 
   return (
     <div className="background">
@@ -44,5 +44,5 @@ const Tickets = () => {
     </div>
   );
 };
-
+}
 export default Tickets;

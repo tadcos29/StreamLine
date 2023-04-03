@@ -75,9 +75,6 @@ export const SET_PURCHASE = gql`
       accessKeys
       isHost
       avatar
-      currentPurchase {
-        _id
-      }
     }
   }
 `;
