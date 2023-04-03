@@ -91,8 +91,8 @@ const resolvers = {
       // const { products } = await order.populate('products');
       const product = await stripe.products.create ({
         name: foundEvent.name,
-        description: foundEvent.description
-      })
+        ...(foundEvent.description && { description: foundEvent.description })
+            })
       const price = await stripe.prices.create({
         product: product.id,
         unit_amount: foundEvent.admissionPrice*100,
