@@ -35,7 +35,6 @@ const CreateEventForm = (props) => {
   console.log('editmode local');
   console.log(editMode);
   const [success, setSuccess] = useState(false);
-
   if (editFeasible) {
      stateObj={
       name: OESelectedEvent.name,
@@ -138,7 +137,7 @@ const CreateEventForm = (props) => {
     <>
       <div class="form text-sky-800">
         <form onSubmit={handleSubmit}>
-          <legend class="section_title">Create Event</legend>
+          <legend class="section_title">{(mode==='edit') ? 'Update' : 'Create'} Event</legend>
 
           <div className="inline-form">
             <div className="inline-form-element">
@@ -234,10 +233,10 @@ const CreateEventForm = (props) => {
           </div>
 
           <button class="bg-sky-700 hover:bg-sky-900 mt-10 text-white font-bold py-2 px-4 rounded-md">
-            Create Event
+          {(mode==='edit') ? 'Update' : 'Create'} Event
           </button>
         </form>
-        {success && <div>Successfully created event!</div>}
+        {success && <div>Successfully {(mode==='edit') ? 'updated' : 'created'} event!</div>}
       </div>
     </>
   );
