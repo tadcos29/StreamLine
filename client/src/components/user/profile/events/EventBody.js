@@ -51,28 +51,18 @@ const EventBody = () => {
     myEventList = eventList.filter((event) => event.creator._id === user._id);
   }
   return (
-    <div className="event-container">
-      <h2 className="dash-greeting">Events You're Hosting</h2>
-      <p className="dash-bio">
-        Monitor your events. Start and Stop your streams here.{" "}
-      </p>
-      <h2 className="upcoming-events-title">Upcoming Host Events:</h2>
-      <h2 className="dash-bio">
-        Currently, these are your only hosted events.
-      </h2>
-      <div style={{ display: "flex", flexDirection: "row", height: "60vh" }}>
-        <div className="dash-section   w-full md:w-3/5">
-          <div style={{ overflowY: "scroll" }}>
-            <ul>
-              {myEventList.map((myEvent) => (
-                <EventCard
-                  key={myEvent._id}
-                  eventData={myEvent}
-                  handleClick={handleEventClick}
-                />
-              ))}
-            </ul>
-          </div>
+    <div style={{ display: "flex", flexDirection: "row", height: "60vh" }}>
+      <div className="dash-section ">
+        <div style={{ overflowY: "scroll" }}>
+          <ul>
+            {myEventList.map((myEvent) => (
+              <EventCard
+                key={myEvent._id}
+                eventData={myEvent}
+                handleClick={handleEventClick}
+              />
+            ))}
+          </ul>
         </div>
       </div>
     </div>

@@ -36,10 +36,27 @@ const Events = () => {
           <div>
             <TopNav user={user} />
           </div>
-          <div className="body-container ">
-            <EventBody user={user} />
-            <OwnEventInfoBlock user={user}/>
-            <CreateEventForm user={user} mode={'edit'} />
+
+          <div className="event-container">
+            <div className="body-container ">
+              <h2 className="dash-greeting">Events You're Hosting</h2>
+              <p className="dash-bio">
+                Monitor your events. Start and Stop your streams here.{" "}
+              </p>
+              <h2 className="upcoming-events-title">Upcoming Host Events:</h2>
+              <h2 className="dash-bio">
+                Currently, these are your only hosted events.
+              </h2>
+              <div className="grid grid-cols-5">
+                <div className="col-span-3">
+                  <EventBody user={user} />
+                </div>
+                <div className="col-span-2">
+                  <OwnEventInfoBlock user={user} />
+                  <CreateEventForm user={user} mode={"edit"} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

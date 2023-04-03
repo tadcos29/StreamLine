@@ -7,6 +7,7 @@ import ShowAvatar from "../../partials/ShowAvatar";
 import { gql, useMutation } from "@apollo/client";
 import { TOGGLE_EVENT } from "../../../../../utils/mutations";
 import { QUERY_TICKETS } from "../../../../../utils/queries";
+import { OwnEventInfoBlock } from "./OwnEventInfoBlock";
 
 const EventCard = ({ eventData, handleClick }) => {
   const {
@@ -75,7 +76,6 @@ const EventCard = ({ eventData, handleClick }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-
       <div className="w-full grid grid-cols-6">
         <div className="avatar-ticket flex my-auto col-span-1">
           <ShowAvatar user={creator} style={{ borderRadius: "10px" }} />
@@ -96,6 +96,7 @@ const EventCard = ({ eventData, handleClick }) => {
             <p>{url}</p>
             <p>{formattedCurrency}</p>
           </div>
+
           <div className=" text-right">
             <button
               class="bg-gradient-to-r from-lime-400 to-green-300 hover:from-lime-500 hover:to-green-400 text-black font-bold ml-5 mt-10 py-2 px-4  rounded-md"
@@ -105,20 +106,20 @@ const EventCard = ({ eventData, handleClick }) => {
             </button>
 
             {!isLive ? (
-          <button
-            class="bg-green-500 hover:bg-lime-400 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
-            onClick={handleToggle}
-          >
-            Start Live Stream
-          </button>
-        ) : (
-          <button
-            className="bg-red-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md"
-            onClick={handleToggle}
-          >
-            Stop Live Stream
-          </button>
-        )}
+              <button
+                class="bg-green-500 hover:bg-lime-400 text-black font-bold ml-5 mt-10 py-2 px-4 rounded-md"
+                onClick={handleToggle}
+              >
+                Start Live Stream
+              </button>
+            ) : (
+              <button
+                className="bg-red-500 text-white font-bold ml-5 mt-10 py-2 px-4 rounded-md"
+                onClick={handleToggle}
+              >
+                Stop Live Stream
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -127,4 +128,3 @@ const EventCard = ({ eventData, handleClick }) => {
 };
 
 export default EventCard;
-
