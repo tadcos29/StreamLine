@@ -25,7 +25,9 @@ const resolvers = {
     getCurrentPurchase: async (parent, args, context) => {
       if (context.user) {
         const foundUser = await User.findById(context.user._id);
+        console.log('in-cp');
         return foundUser.currentPurchase;
+     
       }
 
       throw new AuthenticationError('Not logged in');

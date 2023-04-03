@@ -1,36 +1,46 @@
 import React, { useEffect } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { ADD_TICKET, SET_PURCHASE } from '../../../utils/mutations';
-import { GET_PURCHASE } from '../../../utils/queries';
-// import  { Redirect } from 'react-router-dom'
+import { GET_PURCHASE, QUERY_USER } from '../../../utils/queries';
 
 const Success = () => {
-  const [addTicket] = useMutation(ADD_TICKET);
+  const [addTicket] = useMutation(ADD_TICKET, {
+    refetchQueries: [{ query: QUERY_USER }]
+  });
   const [setPurchase] = useMutation(SET_PURCHASE);
-
   const { loading, error: queryError, data: queryData } = useQuery(GET_PURCHASE);
 
   useEffect(() => {
-    if (queryData && queryData.currentPurchase) {
+    const processPurchase = async () => {
       try {
-        addTicket({ 
-          variables: {
-            event: queryData.currentPurchase._id,
-          },
-        }).then(() => {
-          setPurchase({
+        console.log('insuccesspurchase');
+        console.log(queryData);
+        const currentPurchase = queryData.getCurrentPurchase;
+        if (currentPurchase) {
+          await addTicket({ 
+            variables: {
+              event: currentPurchase._id,
+            },
+          });
+
+          await setPurchase({
             variables: {
               currentPurchase: null,
             },
           });
-        });
+        }
       } catch (error) {
         console.log(error);
       }
     }
-    setTimeout(() => {
-      window.location.assign('/UserHome');
-    }, 3000);
+
+    // setTimeout(() => {
+    //   window.location.assign('/Tickets');
+    // }, 2000);
+
+    if (queryData) {
+      processPurchase();
+    }
   }, [queryData, addTicket, setPurchase]);
 
   if (loading) {
@@ -40,7 +50,6 @@ const Success = () => {
   if (queryError) {
     console.log(queryError);
     return <h1>Error: {queryError.message}</h1>
-   
   }
 
   return (
