@@ -26,7 +26,6 @@ const OwnEventInfoBlock = () => {
   }
 
   const eventData = OESelectedEvent;
-  console.log(eventData);
 
   return (
     <div>

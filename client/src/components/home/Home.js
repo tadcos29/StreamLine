@@ -22,7 +22,6 @@ const Home = () => {
   let user;
   if (data) {
     user = data.user;
-    console.log("got data");
   }
   function loginStatus(user) {
     if (Auth.loggedIn()) {

@@ -1,7 +1,5 @@
 import React from "react";
 import Purchase from "./Purchase";
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_EVENT, QUERY_TICKET } from "../../../../utils/queries";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
@@ -14,11 +12,9 @@ const Ticket = ({ ticket }) => {
   // if (loading) return <p>Loading Ticket...</p>;
   // if (error) return <p>Error: {error.message}</p>;
 
-  console.log(ticket);
 
   const handleLinkClick = (event) => {
     const linkUrl = event.target.getAttribute("data-url");
-    console.log(linkUrl);
     localStorage.setItem("linkurl", linkUrl);
   };
 

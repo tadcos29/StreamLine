@@ -7,7 +7,7 @@ import { useQuery, useState } from "@apollo/client";
 // import Login from '../../home/Login/Login'
 // import SignUp from '../../components/home/signUp/SignUp'
 import { QUERY_USER } from "../../utils/queries";
-import { useMainContext } from "../../utils/GlobalState";
+// import { useMainContext } from "../../utils/GlobalState";
 
 import LivestreamBody from "./LivestreamBody";
 
